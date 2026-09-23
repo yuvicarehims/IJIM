@@ -1,0 +1,33 @@
+package com.ayurvedic.main.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:src/main/webapp/uploads/");
+        
+        registry.addResourceHandler("/natureuploads/**")
+        .addResourceLocations("file:src/main/webapp/natureuploads/");
+        
+        registry.addResourceHandler("/images/**")
+        .addResourceLocations("/WEB-INF/views/images/");
+    }
+    
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);  // ADD THIS LINE
+        registry.viewResolver(resolver);
+    }
+}
