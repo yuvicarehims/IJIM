@@ -95,86 +95,35 @@ public class SubmissionService {
 	
 	// ✅ NEW: Get current quarter information for display
 	public java.util.Map<String, Object> getCurrentQuarterInfo() {
-		java.time.LocalDate now = java.time.LocalDate.now();
-		int currentYear = now.getYear();
-		int currentMonth = now.getMonthValue();
-		
-		// Determine current quarter
-		int currentQuarter;
-		String quarterRange;
-		if (currentMonth >= 1 && currentMonth <= 2) {
-			currentQuarter = 1;
-			quarterRange = "January - February";
-		} else if (currentMonth >= 3 && currentMonth <= 4) {
-			currentQuarter = 2;
-			quarterRange = "March - April";
-		} else if (currentMonth >= 5 && currentMonth <= 6) {
-			currentQuarter = 3;
-			quarterRange = "May - June";
-		} else if (currentMonth >= 7 && currentMonth <= 8) {
-			currentQuarter = 4;
-			quarterRange = "July - August";
-		} else if (currentMonth >= 9 && currentMonth <= 10) {
-			currentQuarter = 5;
-			quarterRange = "September - October";
-		} else {
-			currentQuarter = 6;
-			quarterRange = "November - December";
-		}
-		
-		// Calculate display year and issue (previous quarter)
-		int displayYear;
-		int displayIssue;
-		
-		if (currentQuarter == 1) {
-			// Q1 shows Q4 of previous year
-			displayYear = currentYear - 1;
-			displayIssue = 4;
-		} else {
-			// Q2 shows Q1, Q3 shows Q2, Q4 shows Q3
-			displayYear = currentYear;
-			displayIssue = currentQuarter - 1;
-		}
-		
-		// Calculate volume: Volume = displayYear - 2021
-		//int displayVolume = displayYear - 2025;
-		
-		
-		
+	    java.time.LocalDate now = java.time.LocalDate.now();
 
-		// Current volume (1–6)
-		/* int currentVolume = (currentMonth - 1) / 2 + 1; */
+	    int currentYear = now.getYear();
+	    int currentMonth = now.getMonthValue()-1;
 
-		// Previous 2-month volume
-	
-		/*int displayVolume;
+	    // Monthly issue
+	    int displayIssue = currentMonth;
 
-		if (currentVolume == 1) {
-		    displayVolume = 6;
-		    displayYear = currentYear - 1;
-		} else {
-		    displayVolume = currentVolume - 1;
-		    displayYear = currentYear;
-		}*/
-		
-		
-		int startYear = 2026;
+	    // Volume starts from 2026
+	    int startYear = 2022;
+	    int displayVolume = currentYear - startYear + 1;
 
-		int displayVolume = currentYear - startYear + 1;
-		 displayYear = currentYear;
+	    java.util.Map<String, Object> info = new java.util.HashMap<>();
 
-		
-		java.util.Map<String, Object> info = new java.util.HashMap<>();
-		info.put("quarter", currentQuarter);
-		info.put("quarterRange", quarterRange);
-		info.put("year", currentYear);
-		info.put("displayYear", displayYear);
-		info.put("displayIssue", displayIssue);
-		info.put("displayVolume", displayVolume);
-		info.put("displayText", quarterRange + " " + currentYear + " | Volume " + displayVolume + ", Issue " + displayIssue);
-		
-		return info;
-	}
+	    info.put("month", currentMonth);
+	    info.put("year", currentYear);
+
+	    info.put("displayYear", currentYear);
+	    info.put("displayIssue", displayIssue);
+	    info.put("displayVolume", displayVolume);
+
+	    info.put(
+	        "displayText",
+	        now.getMonth().toString() + " " + currentYear
+	        + " | Volume " + displayVolume
+	        + ", Issue " + displayIssue
+	    );
+
+	    return info;}
 
 	public List<Submission> getSubmissionsByStatus(String status) {
 		return submissionRepository.findByStatusOrderBySubmittedAtDesc(status);
