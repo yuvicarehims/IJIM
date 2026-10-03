@@ -280,7 +280,7 @@
                 color: #6d3f1d;
                 margin: 0;
                 letter-spacing: 2px;">
-                NATURE AYURVED
+                IJIM
             </h1>
         </div>
 
@@ -415,7 +415,7 @@
 
         <div class="footer-bottom mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.15); text-align:center;">
             <p class="mb-0" style="font-size:14px;">
-                Copyrights © 2026 NATURE AYURVED All Rights Reserved.
+                Copyrights © 2026 IJIM All Rights Reserved.
             </p>
         </div>
 

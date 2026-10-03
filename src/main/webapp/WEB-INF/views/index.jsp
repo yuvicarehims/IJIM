@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NATURE AYURVED | Home</title>
+    <title>IJIM | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -659,7 +659,7 @@
     <div class="container-fluid px-3 px-md-4 px-lg-5">
 
         <a class="navbar-brand d-lg-none" href="${pageContext.request.contextPath}/">
-            <strong>NATURE AYURVED</strong>
+            <strong>IJIM</strong>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">

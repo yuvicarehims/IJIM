@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Previous Volumes And Issues - NATURE AYURVED Admin</title>
+<title>Previous Volumes And Issues - IJIM Admin</title>
 
 <!-- Bootstrap 5.3.3 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -578,7 +578,7 @@ header {
 	<!-- ---------------- SIDEBAR START ---------------- -->
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-header">
-			<h2>NATURE AYURVED</h2>
+			<h2>IJIM</h2>
 		</div>
 
 		<nav class="sidebar-menu">

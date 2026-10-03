@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Author Login Details - NATURE AYURVED Admin</title>
+<title>Author Login Details - IJIM Admin</title>
 
 <!-- Bootstrap 5.3.3 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -577,7 +577,7 @@ header {
 
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-header">
-			<h2>NATURE AYURVED</h2>
+			<h2>IJIM</h2>
 		</div>
 
 		<nav class="sidebar-menu">
@@ -647,7 +647,7 @@ header {
 		<header>
 			<div class="header-container">
 				<div class="logo">
-					<h1>NATURE AYURVED - Author Login Details</h1>
+					<h1>IJIM - Author Login Details</h1>
 					<div class="admin-badge">Administrator</div>
 				</div>
 				<div class="user-info">

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${article.title} • NATURE AYURVED</title>
+  <title>${article.title} • IJIM</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -803,7 +803,7 @@
 
         <!-- CENTER – TITLE -->
         <div class="brand-title">
-            <h1 class="mb-0">NATURE AYURVED</h1>
+            <h1 class="mb-0">IJIM</h1>
         </div>
 
         <!-- RIGHT – ISSN -->
@@ -1098,7 +1098,7 @@
 									class="img-fluid mb-3" style="height:80px; max-width:180px;">
 								<div
 									style="font-size:28px; font-family:Georgia, serif; color:var(--gold); font-weight:700; margin-bottom:10px;">
-									Nature Ayurved
+									IJIM
 								</div>
 								<div
 									style="font-size:11px; font-weight:600; color:#d4a96a; text-transform:uppercase; margin-bottom:20px;">
@@ -1159,7 +1159,7 @@
 
         <div class="footer-bottom mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.15); text-align:center;">
             <p class="mb-0" style="font-size:14px;">
-                Copyrights © 2026 NATURE AYURVED All Rights Reserved.
+                Copyrights © 2026 IJIM All Rights Reserved.
             </p>
         </div>
 

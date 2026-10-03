@@ -1046,7 +1046,7 @@ to {
 	<!-- Footer -->
 	<!-- ===== Footer ===== -->
 	<footer class="footer"
-		style="background: var(--deep-green); color: var(--cream); padding: 60px 0 25px;">
+		style="background:rgb(17, 23, 9); color: var(--cream); padding: 60px 0 25px;">
 		<div class="container">
 
 			<div class="row">

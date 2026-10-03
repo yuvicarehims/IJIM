@@ -1566,11 +1566,13 @@ public class AdminController {
 
 	    try {
 
+			
 			/*
 			 * String uploadDir = System.getProperty("user.dir") + File.separator + "src" +
 			 * File.separator + "main" + File.separator + "webapp" + File.separator +
 			 * "uploads";
 			 */
+			 
 	        
 	        String uploadDir = "/opt/tomcat10/webapps/natureuploads/";
 

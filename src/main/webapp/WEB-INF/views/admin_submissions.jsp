@@ -10,7 +10,7 @@
 				<head>
 					<meta charset="UTF-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<title>Submissions - NATURE AYURVED Admin</title>
+					<title>Submissions - IJIM Admin</title>
 
 				<!-- Bootstrap 5.3.3 CSS -->
 				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -1578,7 +1578,7 @@
 					<!-- Sidebar -->
 					<div class="sidebar" id="sidebar">
 						<div class="sidebar-header">
-							<h2>NATURE AYURVED</h2>
+							<h2>IJIM</h2>
 						</div>
 
 						<nav class="sidebar-menu">
@@ -1647,7 +1647,7 @@
 						<header>
 							<div class="header-container">
 								<div class="logo">
-									<h1>NATURE AYURVED - Submissions</h1>
+									<h1>IJIM - Submissions</h1>
 									<div class="admin-badge">Administrator</div>
 								</div>
 								<div class="user-info">

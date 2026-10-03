@@ -902,11 +902,11 @@ body {
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/contact">Contact</a></li>
-					<li class="nav-item"><a class="nav-link active"
+					<%-- <li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath}/policy">Policy</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="https://www.vidyavishva.com/" target="_blank">VIDYAVISHVA</a>
-					</li>
+					</li> --%>
 				</ul>
 			</div>
 		</div>
@@ -915,7 +915,7 @@ body {
 	${pageContent}
 	<!-- ===== Footer ===== -->
 	<footer class="footer"
-		style="background: var(--deep-green); color: var(--cream); padding: 60px 0 25px;">
+		style="background:rgb(17, 23, 9); color: var(--cream); padding: 60px 0 25px;">
 		<div class="container">
 
 			<div class="row">

@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NATURE AYURVED : Contact Us</title>
+    <title>IJIM : Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -761,10 +761,10 @@
                 <li class="nav-item">
                     <a class="nav-link ${page=='contact'?'active':''}" href="${pageContext.request.contextPath}/contact">CONTACT</a>
                 </li>
-                	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/policy">Policy</a></li>
+                	<%-- <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/policy">Policy</a></li>
                 	<li class="nav-item">
 					<a class="nav-link" href="https://www.vidyavishva.com/" target="_blank">VIDYAVISHVA</a>
-				</li>
+				</li> --%>
             </ul>
         </div>
     </div>
@@ -970,7 +970,7 @@
 
         <div class="footer-bottom mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.15); text-align:center;">
             <p class="mb-0" style="font-size:14px;">
-                Copyright © 2026 NATURE AYURVED All Rights Reserved.
+                Copyright © 2026 IJIM All Rights Reserved.
             </p>
         </div>
 

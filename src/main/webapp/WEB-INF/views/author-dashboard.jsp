@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Author Dashboard - NATURE AYURVED</title>
+    <title>Author Dashboard - IJIM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -1059,7 +1059,7 @@
             <div class="d-flex align-items-center">
                 <img src="${pageContext.request.contextPath}/images/Logo_1-removebg-preview.png" alt="logo" style="height:60px;" class="me-3">
                 <div class="d-flex flex-column align-items-start">
-                    <div class="logo-text">NATURE AYURVED</div>
+                    <div class="logo-text">IJIM</div>
                     <span class="logo-subtitle">International Journal of Ayurved Science & Research</span>
                 </div>
             </div>
@@ -1460,7 +1460,7 @@
 									class="img-fluid mb-3" style="height:80px; max-width:180px;">
 								<div
 									style="font-size:28px; font-family:Georgia, serif; color:var(--gold); font-weight:700; margin-bottom:10px;">
-									Nature Ayurved
+									IJIM
 								</div>
 								<div
 									style="font-size:11px; font-weight:600; color:#d4a96a; text-transform:uppercase; margin-bottom:20px;">
@@ -1506,7 +1506,7 @@
             </div>
 
             <div class="footer-bottom">
-                &copy; 2025 NATURE AYURVED | All Rights Reserved. | <a href="#">Privacy Policy</a>
+                &copy; 2025 IJIM | All Rights Reserved. | <a href="#">Privacy Policy</a>
             </div>
         </div>
     </footer>

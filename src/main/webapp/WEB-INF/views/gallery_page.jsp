@@ -164,7 +164,7 @@
 
         <div class="gallery-item">
 
-           <%--  <img src="/AYURVEDA/natureuploads/${img}"
+          <%--   <img src="http://localhost:8090/uploads/${img}"
                  onclick="togglePath(this)"
                  class="gallery-image"> --%>
                  
@@ -175,7 +175,7 @@
             <div class="path-box">
 
                 <input type="text"
-                       <%-- value="/AYURVEDA/natureuploads/${img}" --%>
+                       <%-- value="http://localhost:8090/uploads/${img}" --%>
                        value="https://natureayurved.com/natureuploads/${img}"
                        readonly
                        class="path-input">

@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Author Login - NATURE AYURVED</title>
+<title>Author Login - IJIM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link
@@ -954,10 +954,10 @@ body {
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/contact">Contact</a></li>
-					<li class="nav-item"><a class="nav-link"
+				<%-- 	<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/policy">Policy</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="https://www.vidyavishva.com/" target="_blank">VIDYAVISHVA</a></li>
+						href="https://www.vidyavishva.com/" target="_blank">VIDYAVISHVA</a></li> --%>
 				</ul>
 			</div>
 		</div>
@@ -1081,7 +1081,7 @@ body {
 	<!-- ===== Footer ===== -->
 
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background: var(--deep-green) !important;">
+		style="background:rgb(17, 23, 9) !important;">
 		<div class="container">
 
 			<div class="row gy-4">
@@ -1180,7 +1180,7 @@ body {
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyright © 2026 NATURE AYURVED | All Rights Reserved | <a href="#"
+				Copyright © 2026 IJIM | All Rights Reserved | <a href="#"
 					class="text-light text-decoration-none">Privacy Policy</a>
 			</div>
 

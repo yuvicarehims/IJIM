@@ -914,11 +914,11 @@ body {
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/contact">Contact</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<%-- <li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/policy">Policy</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="https://www.vidyavishva.com/" target="_blank">VIDYAVISHVA</a>
-					</li>
+					</li> --%>
 				</ul>
 			</div>
 		</div>
