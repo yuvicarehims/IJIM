@@ -746,9 +746,9 @@ footer span {
 }
 
 .heading-responsive {
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    margin: 0;
+	text-align: center;
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
+	margin: 0;
 }
 
 .impact-factor {
@@ -756,8 +756,9 @@ footer span {
 	font-size: 20px;
 	margin-top: 5px;
 }
+
 .header-title h1 {
-    text-shadow: none !important;
+	text-shadow: none !important;
 }
 </style>
 </head>
@@ -823,6 +824,10 @@ footer span {
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/contact">Contact</a></li>
+
+					<li class="nav-item"><a
+						class="nav-link ${page=='pdf'?'active':''}"
+						href="${pageContext.request.contextPath}/pdfs">PDf</a></li>
 					<%-- <li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/policy">Policy</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -969,7 +974,7 @@ footer span {
 
 	<!-- ===== Footer ===== -->
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background:rgb(17, 23, 9) !important;">
+		style="background: rgb(17, 23, 9) !important;">
 		<div class="container">
 
 			<div class="row gy-4">
@@ -1068,7 +1073,8 @@ footer span {
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyright © 2026 IJIM | All Rights Reserved | <a href="#"
+				Copyrights © 2020 Ayurveda Research & Career Academy (ARCA) | All
+				Rights Reserved | <a href="#"
 					class="text-light text-decoration-none">Privacy Policy</a>
 			</div>
 

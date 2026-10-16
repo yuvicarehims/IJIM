@@ -32,6 +32,8 @@ import com.ayurvedic.main.entity.User;
 import com.ayurvedic.main.entity.Submission.Status;
 import com.ayurvedic.main.service.SubmissionService;
 import com.ayurvedic.main.service.UserService;
+
+import org.apache.pdfbox.Loader;
 // PDF Text Extraction imports
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -154,7 +156,7 @@ public class AuthorController {
     
     // ✅ ADDED PROFESSIONAL PDF TEXT EXTRACTION METHOD
     private String extractPdfContent(File file) {
-        try (PDDocument document = PDDocument.load(file)) {
+        try (PDDocument document = Loader.loadPDF(file)) {   //PDDocument.load(file)
             PDFTextStripper pdfStripper = new PDFTextStripper();
             String content = pdfStripper.getText(document).trim();
             return content.isEmpty() ? "[EMPTY_PDF_FILE]" : content;

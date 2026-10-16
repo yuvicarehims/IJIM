@@ -1139,8 +1139,8 @@ to {
 
 			<div class="footer-bottom mt-4 pt-3"
 				style="border-top: 1px solid rgba(255, 255, 255, 0.15); text-align: center;">
-				<p class="mb-0" style="font-size: 14px;">Copyright © 2026 NATURE
-					AYURVED All Rights Reserved.</p>
+				<p class="mb-0" style="font-size: 14px;">Copyrights © 2020 Ayurveda Research & Career Academy (ARCA)
+					</p>
 			</div>
 
 		</div>

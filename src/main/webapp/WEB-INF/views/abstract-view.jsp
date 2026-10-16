@@ -1,368 +1,471 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Abstract: ${article.title}</title>
+<meta charset="UTF-8">
+<title>Abstract: ${article.title}</title>
 
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Cinzel:wght@600&display=swap"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+	rel="stylesheet">
 
-    <!-- (Optional but helps footer layout if you use Bootstrap anywhere else) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- (Optional but helps footer layout if you use Bootstrap anywhere else) -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
-    <style>
-        :root {
-            --deep-green: rgb(30, 140, 193);;
-            --leaf: #2b8a5f;
-            --gold: #c9a25a;
-            --cream: #fbf6ee;
-            --paper: #f7efe6;
-            --text: #2d2d2d;
-            --radius: 14px;
-            --shadow-soft: 0 10px 30px rgba(0,0,0,0.12);
-            --max-width: 1200px;
-        }
+<style>
+:root {
+	--deep-green: rgb(30, 140, 193);;
+	--leaf: #2b8a5f;
+	--gold: #c9a25a;
+	--cream: #fbf6ee;
+	--paper: #f7efe6;
+	--text: #2d2d2d;
+	--radius: 14px;
+	--shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.12);
+	--max-width: 1200px;
+}
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+	box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at top, #ffffff 0%, #f7efe6 35%, #e8ddcf 100%);
-            margin: 0;
-            color: var(--text);
-        }
+body {
+	font-family: 'Poppins', sans-serif;
+	background: radial-gradient(circle at top, #ffffff 0%, #f7efe6 35%, #e8ddcf 100%);
+	margin: 0;
+	color: var(--text);
+}
 
-        .container-main {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+.container-main {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 0 20px;
+}
 
-        /* MINI HEADER (TOP) */
-        .mini-header {
-            background:#fafafa;
-            border-bottom:1px solid #e0e0e0;
-            padding:8px 18px;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-        }
-        .mini-header-left {
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
-        .mini-logo-text {
-            font-family: 'Cinzel', serif;
-            font-weight:700;
-            font-size:20px;
-            color:#6d3f1d;
-            letter-spacing:1px;
-        }
-        .mini-header-right {
-            font-size:12px;
-            color:#555;
-        }
+/* MINI HEADER (TOP) */
+.mini-header {
+	background: #fafafa;
+	border-bottom: 1px solid #e0e0e0;
+	padding: 8px 18px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
-        /* CONTENT WRAPPER */
-        .page-wrapper {
-            min-height: calc(100vh - 180px);
-            display:flex;
-            justify-content:center;
-            align-items:flex-start;
-            padding:35px 15px 40px;
-        }
+.mini-header-left {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
 
-        .abstract-container {
-            max-width:850px;
-            width:100%;
-            background:white;
-            padding:26px 26px 24px;
-            border-radius:var(--radius);
-            box-shadow:var(--shadow-soft);
-            border-top:4px solid var(--gold);
-            position:relative;
-        }
+.mini-logo-text {
+	font-family: 'Cinzel', serif;
+	font-weight: 700;
+	font-size: 20px;
+	color: #6d3f1d;
+	letter-spacing: 1px;
+}
 
-        .abstract-badge {
-            position:absolute;
-            top:-14px;
-            left:20px;
-            background:var(--deep-green);
-            color:white;
-            padding:4px 12px;
-            border-radius:20px;
-            font-size:11px;
-            text-transform:uppercase;
-            letter-spacing:0.08em;
-            display:inline-flex;
-            align-items:center;
-            gap:6px;
-        }
+.mini-header-right {
+	font-size: 12px;
+	color: #555;
+}
 
-        .abstract-title {
-            font-family:'Cinzel', serif;
-            font-size:21px;
-            margin:10px 0 5px;
-            color:var(--deep-green);
-        }
+/* CONTENT WRAPPER */
+.page-wrapper {
+	min-height: calc(100vh - 180px);
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 35px 15px 40px;
+}
 
-        .divider {
-            height:1px;
-            background:linear-gradient(to right, rgba(201,162,90,0.7), rgba(255,255,255,0));
-            margin:8px 0 16px;
-        }
+.abstract-container {
+	max-width: 850px;
+	width: 100%;
+	background: white;
+	padding: 26px 26px 24px;
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-soft);
+	border-top: 4px solid var(--gold);
+	position: relative;
+}
 
-        .abstract-heading {
-            font-weight:600;
-            font-size:14px;
-            margin-bottom:6px;
-            color:#444;
-            text-transform:uppercase;
-            letter-spacing:0.08em;
-        }
+.abstract-badge {
+	position: absolute;
+	top: -14px;
+	left: 20px;
+	background: var(--deep-green);
+	color: white;
+	padding: 4px 12px;
+	border-radius: 20px;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
 
-        .abstract-content {
-            line-height:1.7;
-            font-size:15px;
-            color:#333;
-            text-align:justify;
-        }
+.abstract-title {
+	font-family: 'Cinzel', serif;
+	font-size: 21px;
+	margin: 10px 0 5px;
+	color: var(--deep-green);
+}
 
-        .keywords {
-            margin-top:18px;
-            background:#faf7f0;
-            padding:12px 14px;
-            border-radius:10px;
-            border-left:3px solid var(--gold);
-            font-size:14px;
-        }
+.divider {
+	height: 1px;
+	background: linear-gradient(to right, rgba(201, 162, 90, 0.7),
+		rgba(255, 255, 255, 0));
+	margin: 8px 0 16px;
+}
 
-        .keywords strong {
-            text-transform:uppercase;
-            letter-spacing:0.08em;
-            font-size:12px;
-            color:#555;
-        }
+.abstract-heading {
+	font-weight: 600;
+	font-size: 14px;
+	margin-bottom: 6px;
+	color: #444;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
 
-        .actions-row {
-            display:flex;
-            justify-content:flex-end;
-            margin-top:22px;
-        }
+.abstract-content {
+	line-height: 1.7;
+	font-size: 15px;
+	color: #333;
+	text-align: justify;
+}
 
-        .back-btn {
-            display:inline-flex;
-            align-items:center;
-            gap:6px;
-            background:var(--deep-green);
-            color:white;
-            padding:9px 18px;
-            text-decoration:none;
-            border-radius:6px;
-            font-size:13px;
-            font-weight:500;
-            border:none;
-            cursor:pointer;
-            box-shadow:0 4px 10px rgba(11,86,51,0.3);
-        }
-        .back-btn:hover {
-            background:#093b26;
-            color:#fff;
-        }
+.keywords {
+	margin-top: 18px;
+	background: #faf7f0;
+	padding: 12px 14px;
+	border-radius: 10px;
+	border-left: 3px solid var(--gold);
+	font-size: 14px;
+}
 
-        /* FOOTER (FULL AYUSCRIPT FOOTER) */
-        .footer {
-            background:var(--deep-green);
-            color:var(--cream);
-            padding:35px 0 10px;
-            margin-top:10px;
-        }
+.keywords strong {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 12px;
+	color: #555;
+}
 
-        .footer-links {
-            list-style:none;
-            padding-left:0;
-            margin:0;
-        }
+.actions-row {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 22px;
+}
 
-        .footer-links li {
-            margin-bottom:6px;
-        }
+.back-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: var(--deep-green);
+	color: white;
+	padding: 9px 18px;
+	text-decoration: none;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 500;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 4px 10px rgba(11, 86, 51, 0.3);
+}
 
-        .footer-links a {
-            color:white;
-            text-decoration:none;
-        }
-        .footer-links a:hover {
-            text-decoration:underline;
-        }
+.back-btn:hover {
+	background: #093b26;
+	color: #fff;
+}
 
-        .footer-bottom {
-            border-top:1px solid rgba(255,255,255,0.15);
-            margin-top:25px;
-            padding-top:12px;
-            text-align:center;
-            font-size:13px;
-        }
+/* FOOTER (FULL AYUSCRIPT FOOTER) */
+.footer {
+	background: var(--deep-green);
+	color: var(--cream);
+	padding: 35px 0 10px;
+	margin-top: 10px;
+}
 
-        @media (max-width: 600px) {
-            .page-wrapper {
-                padding:20px 10px 30px;
-            }
-            .abstract-container {
-                padding:20px 16px 18px;
-            }
-            .abstract-title {
-                font-size:18px;
-            }
-            .mini-header {
-                flex-direction:column;
-                align-items:flex-start;
-                gap:4px;
-            }
-        }
-         /* ===== Footer ===== */
-       .footer-links {
-    list-style: none;
-    padding-left: 0;
+.footer-links {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
 }
 
 .footer-links li {
-    margin-bottom: 12px; 
+	margin-bottom: 6px;
+}
+
+.footer-links a {
+	color: white;
+	text-decoration: none;
+}
+
+.footer-links a:hover {
+	text-decoration: underline;
+}
+
+.footer-bottom {
+	border-top: 1px solid rgba(255, 255, 255, 0.15);
+	margin-top: 25px;
+	padding-top: 12px;
+	text-align: center;
+	font-size: 13px;
+}
+
+@media ( max-width : 600px) {
+	.page-wrapper {
+		padding: 20px 10px 30px;
+	}
+	.abstract-container {
+		padding: 20px 16px 18px;
+	}
+	.abstract-title {
+		font-size: 18px;
+	}
+	.mini-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 4px;
+	}
+}
+/* ===== Footer ===== */
+.footer-links {
+	list-style: none;
+	padding-left: 0;
+}
+
+.footer-links li {
+	margin-bottom: 12px;
 }
 
 .footer a {
-    color: #fff;
-    text-decoration: none;
+	color: #fff;
+	text-decoration: none;
 }
 
 .footer a:hover {
-    color: var(--gold);
+	color: var(--gold);
 }
+
 .footer {
-    background-color: var(--deep-green);
-    color: var(--cream);
-    padding: 25px 0 5px !important;  /* very compact */
+	background-color: var(--deep-green);
+	color: var(--cream);
+	padding: 25px 0 5px !important; /* very compact */
 }
 
+.authors-list {
+	background: var(--cream);
+	padding: 2rem 1.8rem;
+	border-radius: var(--radius);
+	margin-bottom: 2.5rem;
+	box-shadow: var(--shadow);
+}
 
-        
-    </style>
+.authors-list h3 {
+	color: var(--deep-green);
+	margin-bottom: 1.2rem;
+	margin-top: 0;
+	font-family: 'Cinzel', serif;
+	font-size: 1.6rem;
+	border-bottom: 2px solid var(--gold);
+	padding-bottom: 0.5rem;
+	display: inline-block;
+}
+
+.author-item {
+	background: var(--paper);
+	padding: 1.2rem 1.3rem;
+	border-radius: var(--radius);
+	margin-bottom: 1rem;
+	border-left: 4px solid var(--leaf);
+	line-height: 1.6;
+}
+
+.author-item:last-child {
+	margin-bottom: 0;
+}
+
+.author-item strong {
+	color: var(--deep-green);
+	font-size: 1.05rem;
+}
+
+/* Citation Box - professional spacing */
+.citation-box {
+	background: var(--cream);
+	padding: 2rem;
+	border-radius: var(--radius);
+	margin: 2.5rem 0;
+	border-left: 4px solid var(--gold);
+	box-shadow: var(--shadow);
+	line-height: 1.7;
+}
+
+.citation-box strong {
+	color: var(--deep-green);
+	display: block;
+	margin-bottom: 1rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.citation-box p {
+	margin-bottom: 0.9rem;
+	line-height: 1.7;
+}
+</style>
 </head>
 <body>
 
-    <!-- TOP MINI HEADER -->
-   <header style="background:#fafafa; padding:15px 0; border-bottom:1px solid #e0e0e0; width:100%;">
+	<!-- TOP MINI HEADER -->
+	<header
+		style="background: #fafafa; padding: 15px 0; border-bottom: 1px solid #e0e0e0; width: 100%;">
 
-    <!-- FULL-WIDTH WRAPPER -->
-    <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+		<!-- FULL-WIDTH WRAPPER -->
+		<div
+			style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
 
-        <!-- LEFT – LOGO -->
-        <div style="padding-left:25px;">
-            <img src="${pageContext.request.contextPath}/images/Logo_1-removebg-preview.png"
-                 alt="AYUSCRIPT Logo"
-                 style="height:90px; width:180px; object-fit:contain;">
-        </div>
+			<!-- LEFT – LOGO -->
+			<div style="padding-left: 25px;">
+				<img src="${pageContext.request.contextPath}/images/IJIMlogo.png"
+					alt="AYUSCRIPT Logo"
+					style="height: 90px; width: 180px; object-fit: contain;">
+			</div>
 
-        <!-- CENTER – TITLE -->
-        <div style="flex-grow:1; text-align:center; margin-left:-100px;">
-            <h1 style="
-                font-family: Georgia, serif;
-                font-weight: 800;
-                font-size: 48px;
-                color: #6d3f1d;
-                margin: 0;
-                letter-spacing: 2px;">
-                IJIM
-            </h1>
-        </div>
+			<!-- CENTER – TITLE -->
+			<div style="flex-grow: 1; text-align: center; margin-left: -100px;">
+				<h1
+					style="font-family: Georgia, serif; font-weight: 800; font-size: 48px; color: #6d3f1d; margin: 0; letter-spacing: 2px;">
+					IJIM</h1>
+			</div>
 
-        <!-- RIGHT – ISSN -->
-        <div style="padding-right:35px;">
-            <span style="
-                font-size: 22px;
-                font-weight: 700;
-                color: #4a4a4a;">
-                ISSN: 0000-0000
-            </span>
-        </div>
+			<!-- RIGHT – ISSN -->
+			<div style="padding-right: 35px;">
+				<span style="font-size: 22px; font-weight: 700; color: #4a4a4a;">
+					ISSN: 2582-7634 </span>
+			</div>
 
-    </div>
+		</div>
 
-</header>
+	</header>
 
 
-    <!-- MAIN CONTENT -->
-    <div class="page-wrapper">
-        <div class="abstract-container">
-            <div class="abstract-badge">
-                <i class="fas fa-file-alt"></i> Abstract
-            </div>
+	<!-- MAIN CONTENT -->
+	<div class="page-wrapper">
+		<div class="abstract-container">
 
-            <!-- Article Title (logic unchanged) -->
-            <h1 class="abstract-title">${article.title}</h1>
 
-            <div class="divider"></div>
+			<!-- Authors -->
+			<c:if test="${not empty article.authorNames}">
+				<div class="authors-list">
+					<h3>Authors</h3>
+					<c:set var="authorNames"
+						value="${fn:split(article.authorNames, '||')}" />
+					<c:set var="authorDetails"
+						value="${fn:split(article.authorDetails, '||')}" />
+					<c:forEach var="i" begin="0" end="${fn:length(authorNames) - 1}">
+						<div class="author-item">
+							<strong>${authorNames[i]}</strong>
+							<c:if test="${not empty authorDetails[i]}">
+								<br>
+								<span style="color: #666; font-size: 0.9rem;">${authorDetails[i]}</span>
+							</c:if>
+						</div>
+					</c:forEach>
+				</div>
+			</c:if>
 
-            <div class="abstract-section">
-                <div class="abstract-heading">Abstract</div>
-                <div class="abstract-content">
-                    <c:if test="${not empty article.abstractText}">
-                        <p>${article.abstractText}</p>
-                    </c:if>
 
-                    <c:if test="${empty article.abstractText}">
-                        <p>No abstract available for this article.</p>
-                    </c:if>
-                </div>
-            </div>
+			<div class="abstract-badge">
+				<i class="fas fa-file-alt"></i> Abstract
+			</div>
 
-            <c:if test="${not empty article.abstractKeywords}">
-                <div class="keywords">
-                    <strong>KEYWORDS:</strong>
-                    &nbsp;${article.abstractKeywords}
-                </div>
-            </c:if>
+			<!-- Article Title (logic unchanged) -->
+			<h1 class="abstract-title">${article.title}</h1>
 
-            <div class="actions-row">
-                <!-- SAME LOGIC: close window -->
-                <a href="javascript:window.close()" class="back-btn">
-                    <i class="fas fa-times"></i> Close Window
-                </a>
-            </div>
-        </div>
-    </div>
+			<div class="divider"></div>
 
-    <!-- FULL AYUSCRIPT FOOTER -->
-   <!-- ===== Footer ===== -->
+			<div class="abstract-section">
+				<div class="abstract-heading">Abstract</div>
+				<div class="abstract-content">
+					<c:if test="${not empty article.abstractText}">
+						<p>${article.abstractText}</p>
+					</c:if>
 
-<footer class="footer" style="background:var(--deep-green); color:var(--cream); padding:60px 0 25px;">
-    <div class="container">
+					<c:if test="${empty article.abstractText}">
+						<p>No abstract available for this article.</p>
+					</c:if>
+				</div>
+			</div>
 
-        <div class="row align-items-start">
+			<c:if test="${not empty article.abstractKeywords}">
+				<div class="keywords">
+					<strong>KEYWORDS:</strong> &nbsp;${article.abstractKeywords}
+				</div>
+			</c:if>
 
-            <!-- LEFT COLUMN -->
-            <div class="col-lg-4 mb-4">
-                <div class="footer-logo mb-3">
-								<img src="${pageContext.request.contextPath}/images/Logo_1-removebg-preview.png" alt="logo"
-									class="img-fluid mb-3" style="height:80px; max-width:180px;">
-								<div
-									style="font-size:28px; font-family:Georgia, serif; color:var(--gold); font-weight:700; margin-bottom:10px;">
-									Nature Ayurved
-								</div>
-								<div
-									style="font-size:11px; font-weight:600; color:#d4a96a; text-transform:uppercase; margin-bottom:20px;">
-									International Journal of Ayurved Science & Research
-								</div>
-							</div>
-             <!--    <p class="mb-2" style="font-size:14px; line-height:1.5;">
+			<!-- Citation -->
+			<c:if test="${not empty article.citation}">
+				<div class="citation-box">
+					<strong>How to cite this article:</strong> ${article.citation}
+				</div>
+			</c:if>
+
+			<div class="actions-row">
+				<!-- SAME LOGIC: close window -->
+				<a href="javascript:window.close()" class="back-btn"> <i
+					class="fas fa-times"></i> Close Window
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- FULL AYUSCRIPT FOOTER -->
+	<!-- ===== Footer ===== -->
+
+	<footer class="footer"
+		style="background: var(--deep-green); color: var(--cream); padding: 60px 0 25px;">
+		<div class="container">
+
+			<div class="row align-items-start">
+
+				<!-- LEFT COLUMN -->
+				<div class="col-lg-4 mb-4">
+					<div class="footer-logo mb-3">
+						<img src="${pageContext.request.contextPath}/images/IJIMlogo.png"
+							alt="logo" class="img-fluid mb-3"
+							style="height: 80px; max-width: 180px;">
+						<!-- Address -->
+						<div
+							style="font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
+							<i class="fas fa-map-marker-alt me-2"></i> 8A, Wandhare Child
+							Care Hospital,<br> Dubey Nagar, Hudkeshwar Road,<br>
+							Nagpur, Maharashtra 440034, India
+						</div>
+
+						<!-- Phone -->
+						<div style="font-size: 13px; margin-bottom: 5px;">
+							<i class="fas fa-phone me-2"></i> (+91) 9404 233 935
+						</div>
+						
+						<!-- Email -->
+						<div style="font-size: 13px;">
+							<i class="fas fa-envelope me-2"></i> arcaexperts@gmail.com
+						</div>
+					</div>
+					<!--    <p class="mb-2" style="font-size:14px; line-height:1.5;">
                     Flat No 604, Raut Arcade, Near Mohan Palms,<br>
                     Shirgaon, Badlapur, Thane 421 503
                 </p>
@@ -374,57 +477,72 @@
                 <p class="mb-2" style="font-size:14px;">Email: drvcbawane@gmail.com</p>
                 <p class="mb-2" style="font-size:14px;">Mobile: 9324737097</p> -->
 
-              <!--   <div class="social-icons mt-3">
+					<!--   <div class="social-icons mt-3">
                     <a href="#"><i class="fab fa-facebook-f me-3" style="color:white;"></i></a>
                     <a href="#"><i class="fab fa-twitter me-3" style="color:white;"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in" style="color:white;"></i></a>
                 </div> -->
-            </div>
+				</div>
 
-            <!-- Quick Links -->
-            <div class="col-lg-2 mb-4">
-                <h5 style="color:var(--gold); font-family:Georgia, serif; margin-bottom:20px;">Quick Links</h5>
-                <ul class="footer-links">
-                    <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/editorial-board">Editorial Board</a></li>
-                    <li><a href="${pageContext.request.contextPath}/current-issue">Current Issue</a></li>
-                </ul>
-            </div>
+				<!-- Quick Links -->
+				<div class="col-lg-2 mb-4">
+					<h5
+						style="color: var(--gold); font-family: Georgia, serif; margin-bottom: 20px;">Quick
+						Links</h5>
+					<ul class="footer-links">
+						<li><a href="${pageContext.request.contextPath}/about">About
+								Us</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/editorial-board">Editorial
+								Board</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/current-issue">Current
+								Issue</a></li>
+					</ul>
+				</div>
 
-            <!-- Author Zone -->
-            <div class="col-lg-2 mb-4">
-                <h5 style="color:var(--gold); font-family:Georgia, serif; margin-bottom:20px;">Author Zone</h5>
-                <ul class="footer-links">
-                    <li><a href="${pageContext.request.contextPath}/submit-article">Submit Article</a></li>
-                    <li><a href="${pageContext.request.contextPath}/author-guideline">Author Guideline</a></li>
-                    <li><a href="${pageContext.request.contextPath}/login">Login / Register</a></li>
-                </ul>
-            </div>
+				<!-- Author Zone -->
+				<div class="col-lg-2 mb-4">
+					<h5
+						style="color: var(--gold); font-family: Georgia, serif; margin-bottom: 20px;">Author
+						Zone</h5>
+					<ul class="footer-links">
+						<li><a
+							href="${pageContext.request.contextPath}/submit-article">Submit
+								Article</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/author-guideline">Author
+								Guideline</a></li>
+						<li><a href="${pageContext.request.contextPath}/login">Login
+								/ Register</a></li>
+					</ul>
+				</div>
 
-            <!-- Contact -->
-            <div class="col-lg-4 mb-4">
-                <h5 style="color:var(--gold); font-family:Georgia, serif; margin-bottom:20px;">Contact</h5>
-                <ul class="footer-links">
-                    <li><i class="fa fa-envelope me-2"></i> natureayurvedjournal@gmail.com</li>
-                    <li><i class="fa fa-globe me-2"></i> natureayurved.com</li>
-                    <li><i class="fa fa-barcode me-2"></i> ISSN: 0000-0000</li>
-                </ul>
-            </div>
+				<!-- Contact -->
+				<div class="col-lg-4 mb-4">
+					<h5
+						style="color: var(--gold); font-family: Georgia, serif; margin-bottom: 20px;">Contact</h5>
+					<ul class="footer-links">
+						<li><i class="fa fa-envelope me-2"></i> arcaexperts@gmail.com</li>
+						<li><i class="fa fa-barcode me-2"></i> ISSN: 2582-7634</li>
+					</ul>
+				</div>
 
-        </div>
+			</div>
 
-        <div class="footer-bottom mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.15); text-align:center;">
-            <p class="mb-0" style="font-size:14px;">
-                Copyrights © 2026 IJIM All Rights Reserved.
-            </p>
-        </div>
+			<div class="footer-bottom mt-4 pt-3"
+				style="border-top: 1px solid rgba(255, 255, 255, 0.15); text-align: center;">
+				<p class="mb-0" style="font-size: 14px;">Copyrights © 2020 Ayurveda Research & Career Academy (ARCA)
+					All Rights Reserved.</p>
+			</div>
 
-    </div>
-</footer>   
+		</div>
+	</footer>
 
 
-    <!-- Optional Bootstrap JS (not required for logic) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Optional Bootstrap JS (not required for logic) -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

@@ -40,7 +40,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/home", "/register", "/login", "/forgot-password", 
                                "/current-issue", "/about", "/contact", "/contactCreate",
-                               "/editorial-board", "/author-guideline", "/submitArticle","/archives/**",
+                               "/editorial-board", "/author-guideline", "/submitArticle","/archives/**","/pdfs/**","/admin/pdfs/open/**",
                                "/policy",   // ✅ ADD THIS LINE
                                "/css/**", "/js/**", "/images/**", "/uploads/**", "/natureuploads/**",
                                "/WEB-INF/views/**", "/admin/register", "/admin/login","/download","/download/**", "/article/**",

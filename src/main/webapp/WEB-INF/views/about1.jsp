@@ -949,6 +949,10 @@ body {
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/contact">Contact</a></li>
+
+					<li class="nav-item"><a
+						class="nav-link ${page=='pdf'?'active':''}"
+						href="${pageContext.request.contextPath}/pdfs">PDf</a></li>
 					<%-- <li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/policy">Policy</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -969,7 +973,7 @@ body {
 	<div id="complete_section">${pageContent}</div>
 	<!-- ===== Footer ===== -->
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background:rgb(17, 23, 9) !important;">
+		style="background: rgb(17, 23, 9) !important;">
 		<div class="container">
 
 			<div class="row gy-4">
@@ -1068,7 +1072,8 @@ body {
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyright © 2026 IJIM | All Rights Reserved | <a href="#"
+				Copyrights © 2020 Ayurveda Research & Career Academy (ARCA) | All
+				Rights Reserved | <a href="#"
 					class="text-light text-decoration-none">Privacy Policy</a>
 			</div>
 

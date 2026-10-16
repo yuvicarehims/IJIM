@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Paper Review - AYUSCRIPT</title>
+  <title>Paper Review - IJIM</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
 
@@ -128,10 +128,10 @@
   <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
 
   <div class="sidebar" id="sidebar">
-    <div class="sidebar-header"><h2>AYUSCRIPT</h2></div>
+    <div class="sidebar-header"><h2>IJIM</h2></div>
     <nav class="sidebar-menu">
       <ul>
-        <li><a href="${pageContext.request.contextPath}/admin/dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+        <%-- <li><a href="${pageContext.request.contextPath}/admin/dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
         <li><a href="${pageContext.request.contextPath}/admin/paper-review" class="active"><i class="fas fa-file-alt"></i> <span>Paper Review</span></a></li>
         <li><a href="${pageContext.request.contextPath}/admin/conferences"><i class="fas fa-calendar"></i> <span>Conferences</span></a></li>
         <li><a href="${pageContext.request.contextPath}/admin/editorial-board"><i class="fas fa-users"></i> <span>Editorial Board</span></a></li>
@@ -143,8 +143,25 @@
         <li><a href="${pageContext.request.contextPath}/admin/contact-enquiries"><i class="fas fa-envelope-open"></i> <span>Contact Enquires</span></a></li>
         <li><a href="${pageContext.request.contextPath}/admin/visit-website"><i class="fas fa-globe"></i> <span>Visit Website</span></a></li>
         <li><a href="${pageContext.request.contextPath}/admin/submissions"><i class="fas fa-file"></i> <span>Submissions</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li> --%>
+        
+        <li><a href="${pageContext.request.contextPath}/admin/dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/paper-review" class="active"><i class="fas fa-file-alt"></i> <span>Paper Review</span></a></li>
+        <%-- <li><a href="${pageContext.request.contextPath}/admin/conferences"><i class="fas fa-calendar"></i> <span>Conferences</span></a></li> --%>
+        <li><a href="${pageContext.request.contextPath}/editorial-board" target="_blank"><i class="fas fa-users"></i> <span>Editorial Board</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/about" target="_blank"><i class="fas fa-info-circle"></i> <span>About & Contact Us</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/author-login-details"><i class="fas fa-user-lock"></i> <span>Author Login Details</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/manage-content"><i class="fas fa-edit"></i> <span>Page Content</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/submit-article"><i class="fas fa-upload"></i> <span>Submit Article</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/previous-volumes-issues"><i class="fas fa-book"></i> <span>Previous Volumes And Issues</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/contact-enquiries"><i class="fas fa-envelope-open"></i> <span>Contact Enquires</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/" target="_blank"><i class="fas fa-globe"></i> <span>Visit Website</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/submissions"><i class="fas fa-file"></i> <span>Submissions</span></a></li>
         <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
-      </ul>
+        
+        
+        
+       
     </nav>
   </div>
 
@@ -514,6 +531,8 @@
                        required
                        value="${submission.numberOfPages}">
               </div>
+              
+              <div id="pageError" style="display: none; color: red;"></div>
 
               <!-- ===================== ACTION BUTTONS ===================== -->
               <div class="action-row" style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--light-gray);">

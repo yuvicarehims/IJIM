@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -14,9 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
+import org.apache.pdfbox.Loader;
 // PDF Text Extraction imports
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
@@ -34,29 +39,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.UUID;
-
-import jakarta.transaction.Transactional;
-
 import com.ayurvedic.main.entity.ArticleType;
 import com.ayurvedic.main.entity.ContentTemplate;
 import com.ayurvedic.main.entity.Issue;
+import com.ayurvedic.main.entity.PageContent;
+import com.ayurvedic.main.entity.PdfDocument;
 import com.ayurvedic.main.entity.PublishedArticle;
 import com.ayurvedic.main.entity.Submission;
 import com.ayurvedic.main.entity.Submission.Status;
 import com.ayurvedic.main.entity.TemplateData;
+import com.ayurvedic.main.entity.User;
 import com.ayurvedic.main.entity.Volume;
 import com.ayurvedic.main.repository.ArticleTypeRepository;
 import com.ayurvedic.main.repository.IssueRepository;
@@ -65,11 +63,10 @@ import com.ayurvedic.main.repository.SubmissionRepository;
 import com.ayurvedic.main.repository.VolumeRepository;
 import com.ayurvedic.main.service.ContentTemplateService;
 import com.ayurvedic.main.service.EmailService;
+import com.ayurvedic.main.service.PageContentService;
+import com.ayurvedic.main.service.PdfDocumentService;
 import com.ayurvedic.main.service.SubmissionService;
 import com.ayurvedic.main.service.TemplateDataService;
-import com.ayurvedic.main.entity.User;
-import com.ayurvedic.main.entity.PageContent;
-import com.ayurvedic.main.service.PageContentService;
 // PDF imports
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
@@ -107,6 +104,10 @@ public class AdminController {
 	
 	@Autowired
 	private TemplateDataService templateDataService;
+	
+	
+	@Autowired
+	private  PdfDocumentService pdfDocumentService;
 
 	// ✅ TEXT EXTRACTION METHODS - UPDATED WITH PDF SUPPORT
 	private String extractTextFromFile(File file) {
@@ -213,7 +214,7 @@ public class AdminController {
 
 	// ✅ ADDED PROFESSIONAL PDF TEXT EXTRACTION METHOD
 	private String extractPdfContent(File file) {
-		try (PDDocument document = PDDocument.load(file)) {
+		try (PDDocument document = Loader.loadPDF(file)) {  //PDDocument.load(file)
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			String content = pdfStripper.getText(document).trim();
 			return content.isEmpty() ? "Empty PDF document" : content;
@@ -1634,4 +1635,71 @@ public class AdminController {
 
 	    return "gallery_page";
 	}
+	
+	 // PDF list table mein show karne ke liye
+    @GetMapping("/pdfs")
+    public String getAllPdfs(Model model) {
+
+        List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+
+        model.addAttribute("pdfs", pdfList);
+
+        return "pdf-list";
+    }
+
+    // PDF open karne ke liye
+    @GetMapping("/pdfs/open/{id}")
+    public ResponseEntity<byte[]> openPdf(@PathVariable Long id) {
+
+        try {
+            PdfDocument pdf = pdfDocumentService.getPdfById(id);
+
+            //Path path = Paths.get(pdf.getFilePath());
+            
+            //String uploadDir = "/opt/tomcat10/webapps/ijim/pdfdocument";
+            
+            String uploadDir = "C:\\Users\\user\\OneDrive\\Pictures\\ijim\\pdfdocument";
+
+            Path path = Paths.get(uploadDir, pdf.getName());
+            
+            System.out.println("PDF NAME = " + pdf.getName());
+            System.out.println("PDF PATH = " + path);
+            System.out.println("FILE EXISTS = " + Files.exists(path));
+            
+
+            if (!Files.exists(path) || !Files.isRegularFile(path)) {
+                return ResponseEntity.notFound().build();
+            }
+            
+            byte[] pdfData;
+
+            try (PDDocument document = Loader.loadPDF(path.toFile())) {
+                PDDocumentInformation info = document.getDocumentInformation();
+
+                info.setTitle(pdf.getName());
+                document.setDocumentInformation(info);
+
+                java.io.ByteArrayOutputStream output =
+                        new java.io.ByteArrayOutputStream();
+
+                document.save(output);
+                pdfData = output.toByteArray();
+            }
+
+
+            
+
+            return ResponseEntity.ok()
+            		.contentType(MediaType.APPLICATION_PDF)
+                    .header(
+                        HttpHeaders.CONTENT_DISPOSITION,
+                        "inline; filename=\"" + pdf.getName() + "\"; filename*=UTF-8''" + pdf.getName()
+                    )
+                    .header("X-Content-Type-Options", "nosniff")
+                    .body(pdfData);
+
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

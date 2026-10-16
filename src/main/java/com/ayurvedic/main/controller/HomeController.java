@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ayurvedic.main.entity.PdfDocument;
 import com.ayurvedic.main.entity.Submission;
 import com.ayurvedic.main.entity.TemplateData;
 import com.ayurvedic.main.service.PageContentService;
+import com.ayurvedic.main.service.PdfDocumentService;
 import com.ayurvedic.main.service.SubmissionService;
 import com.ayurvedic.main.service.TemplateDataService;
 
@@ -42,6 +44,9 @@ public class HomeController {
     
     @Autowired
     private TemplateDataService templateDataService;
+    
+    @Autowired
+	private  PdfDocumentService pdfDocumentService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
@@ -594,5 +599,17 @@ public class HomeController {
             return "ayurvedic";
         }
     }
+    
+    
+    @GetMapping("/pdfs")
+    public String getAllPdfs(Model model) {
+
+        List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+
+        model.addAttribute("pageContent", pdfList);
+
+        return "viewhistoryarticlepdf";
+    }
+
 
 }

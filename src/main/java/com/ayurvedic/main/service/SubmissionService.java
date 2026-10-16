@@ -81,6 +81,13 @@ public class SubmissionService {
 					boolean volumeMatch = vol.trim().equalsIgnoreCase(targetVolume);
 					boolean issueMatch = iss.trim().equalsIgnoreCase(targetIssue) || iss.trim().equalsIgnoreCase(targetIssueAlt);
 					
+					 System.out.println("DB Volume = [" + vol + "]");
+					    System.out.println("Target Volume = [" + targetVolume + "]");
+					    System.out.println("DB Issue = [" + iss + "]");
+					    System.out.println("Target Issue = [" + targetIssue + "]");
+					    System.out.println("Volume Match = " + volumeMatch);
+					    System.out.println("Issue Match = " + issueMatch);
+					
 					return volumeMatch && issueMatch;
 				})
 				.sorted((s1, s2) -> {
