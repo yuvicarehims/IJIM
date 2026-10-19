@@ -9,6 +9,22 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+.sidebar-header {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.sidebar-logo {
+	width: 55px;
+	height: 55px;
+	object-fit: contain;
+}
+
+.sidebar-header h2 {
+	margin: 0;
+}
+
 :root {
 	--deep-green: rgb(30, 140, 193);;
 	--leaf: #2b8a5f;
@@ -650,7 +666,7 @@ textarea.form-control {
 
 /* Responsive Design - Professional & Mobile-First */
 /* Extra Large Devices (Large Desktops, 1200px and up) */
-@media (min-width: 1200px) {
+@media ( min-width : 1200px) {
 	.main-content {
 		padding: 1.5rem;
 	}
@@ -661,7 +677,7 @@ textarea.form-control {
 }
 
 /* Large Devices (Desktops, 992px to 1199px) */
-@media (max-width: 1199px) and (min-width: 993px) {
+@media ( max-width : 1199px) and (min-width: 993px) {
 	.main-content {
 		padding: 1.2rem;
 	}
@@ -678,7 +694,7 @@ textarea.form-control {
 }
 
 /* Medium Devices (Tablets, 768px to 992px) */
-@media (max-width: 992px) and (min-width: 769px) {
+@media ( max-width : 992px) and (min-width: 769px) {
 	.sidebar {
 		width: 70px;
 		overflow: hidden;
@@ -729,11 +745,11 @@ textarea.form-control {
 }
 
 /* Small Devices (Landscape Phones, 576px to 768px) */
-@media (max-width: 768px) {
+@media ( max-width : 768px) {
 	body {
 		overflow-x: hidden;
 	}
-	
+
 	/* Mobile Sidebar - Overlay Style */
 	.sidebar {
 		width: 0;
@@ -741,27 +757,22 @@ textarea.form-control {
 		box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 		z-index: 2000;
 	}
-	
 	.sidebar.active {
 		width: 250px;
 		transform: translateX(0);
 	}
-	
-	.sidebar.active .sidebar-header h2, 
-	.sidebar.active .sidebar-menu span {
+	.sidebar.active .sidebar-header h2, .sidebar.active .sidebar-menu span {
 		display: block;
 	}
-	
 	.sidebar.active .sidebar-menu a {
 		justify-content: flex-start;
 		padding: 0.8rem 1.5rem;
 	}
-	
 	.sidebar.active .sidebar-menu i {
 		margin-right: 0.8rem;
 		font-size: 1.2rem;
 	}
-	
+
 	/* Main Content */
 	.main-content {
 		margin-left: 0;
@@ -769,7 +780,7 @@ textarea.form-control {
 		width: 100%;
 		overflow-x: hidden;
 	}
-	
+
 	/* Top Bar */
 	.top-bar {
 		flex-direction: column;
@@ -778,118 +789,101 @@ textarea.form-control {
 		padding: 1rem;
 		margin-bottom: 1rem;
 	}
-	
 	.search-box {
 		width: 100%;
 		max-width: 100%;
 	}
-	
 	.user-info {
 		justify-content: space-between;
 		width: 100%;
 	}
-	
 	.user-details {
 		text-align: left;
 	}
-	
 	.user-avatar {
 		width: 35px;
 		height: 35px;
 		font-size: 0.9rem;
 	}
-	
+
 	/* Stats Cards */
 	.stats-cards {
 		grid-template-columns: 1fr;
 		gap: 1rem;
 		margin-bottom: 1.5rem;
 	}
-	
 	.stat-card {
 		padding: 1.2rem;
 	}
-	
 	.stat-icon {
 		width: 50px;
 		height: 50px;
 		font-size: 1.3rem;
 		margin-right: 0.8rem;
 	}
-	
 	.stat-number {
 		font-size: 1.8rem;
 	}
-	
 	.stat-label {
 		font-size: 0.85rem;
 	}
-	
 	.stat-change {
 		font-size: 0.75rem;
 	}
-	
+
 	/* Dashboard Header */
 	.dashboard-header {
 		margin-bottom: 1rem;
 	}
-	
 	.dashboard-header h1 {
 		font-size: 1.3rem;
 		margin-bottom: 0.3rem;
 	}
-	
 	.dashboard-header p {
 		font-size: 0.9rem;
 	}
-	
+
 	/* Content Area */
 	.content-area {
 		border-radius: 8px;
 		overflow: hidden;
 	}
-	
 	.content-header {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 1rem;
 		padding: 1rem;
 	}
-	
 	.content-header h3 {
 		font-size: 1.1rem;
 	}
-	
 	.content-actions {
 		width: 100%;
 		justify-content: space-between;
 		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
-	
 	.btn {
 		padding: 0.5rem 1rem;
 		font-size: 0.85rem;
 		flex: 1;
 		min-width: 120px;
 	}
-	
+
 	/* Table Responsive */
 	.table-container {
 		padding: 0 0.5rem 1rem;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
 	}
-	
 	.table {
 		min-width: 800px;
 		font-size: 0.85rem;
 	}
-	
 	.table th, .table td {
 		padding: 8px 10px;
 	}
-	
+
 	/* Menu Toggle */
 	.menu-toggle {
 		display: block;
@@ -899,45 +893,36 @@ textarea.form-control {
 }
 
 /* Extra Small Devices (Portrait Phones, less than 576px) */
-@media (max-width: 575px) {
+@media ( max-width : 575px) {
 	.main-content {
 		padding: 0.5rem;
 	}
-	
 	.top-bar {
 		padding: 0.8rem;
 	}
-	
 	.search-box {
 		padding: 0.4rem 0.8rem;
 	}
-	
 	.search-box input {
 		font-size: 0.9rem;
 	}
-	
 	.user-name {
 		font-size: 0.9rem;
 	}
-	
 	.user-role {
 		font-size: 0.75rem;
 	}
-	
 	.dashboard-header h1 {
 		font-size: 1.2rem;
 	}
-	
 	.dashboard-header p {
 		font-size: 0.85rem;
 	}
-	
 	.stat-card {
 		padding: 1rem;
 		flex-direction: column;
 		text-align: center;
 	}
-	
 	.stat-icon {
 		margin-right: 0;
 		margin-bottom: 0.5rem;
@@ -945,62 +930,51 @@ textarea.form-control {
 		height: 45px;
 		font-size: 1.2rem;
 	}
-	
 	.stat-content {
 		width: 100%;
 	}
-	
 	.stat-number {
 		font-size: 1.5rem;
 	}
-	
 	.stat-label {
 		font-size: 0.8rem;
 	}
-	
 	.stat-change {
 		font-size: 0.7rem;
 	}
-	
 	.content-header {
 		padding: 0.8rem;
 	}
-	
 	.content-header h3 {
 		font-size: 1rem;
 	}
-	
 	.btn {
 		padding: 0.5rem 0.8rem;
 		font-size: 0.8rem;
 		min-width: 100px;
 	}
-	
 	.btn-sm {
 		padding: 5px 8px;
 		font-size: 0.75rem;
 		min-width: 32px;
 	}
-	
+
 	/* Table on very small screens */
 	.table-container {
 		padding: 0 0.3rem 0.8rem;
 	}
-	
 	.table {
 		min-width: 700px;
 		font-size: 0.8rem;
 	}
-	
 	.table th, .table td {
 		padding: 6px 8px;
 	}
-	
 	.status {
 		font-size: 0.7rem;
 		padding: 4px 10px;
 	}
-	
+
 	/* Menu Toggle */
 	.menu-toggle {
 		top: 0.5rem;
@@ -1008,25 +982,21 @@ textarea.form-control {
 		padding: 0.6rem 0.8rem;
 		font-size: 1.1rem;
 	}
-	
+
 	/* Sidebar adjustments for very small screens */
 	.sidebar.active {
 		width: 220px;
 	}
-	
 	.sidebar-header {
 		padding: 1rem 0.8rem;
 	}
-	
 	.sidebar-header h2 {
 		font-size: 1.3rem;
 	}
-	
 	.sidebar-menu a {
 		padding: 0.7rem 1.2rem;
 		font-size: 0.9rem;
 	}
-	
 	.sidebar-menu i {
 		font-size: 1.1rem;
 		margin-right: 0.7rem;
@@ -1061,13 +1031,13 @@ textarea.form-control {
 }
 
 /* Menu toggle visibility */
-@media (max-width: 768px) {
+@media ( max-width : 768px) {
 	.menu-toggle {
 		display: block;
 	}
 }
 
-@media (min-width: 769px) {
+@media ( min-width : 769px) {
 	.menu-toggle {
 		display: none;
 	}
@@ -1096,13 +1066,13 @@ textarea.form-control {
 }
 
 /* Sidebar overlay visibility */
-@media (max-width: 768px) {
+@media ( max-width : 768px) {
 	.sidebar-overlay {
 		display: block;
 	}
 }
 
-@media (min-width: 769px) {
+@media ( min-width : 769px) {
 	.sidebar-overlay {
 		display: none !important;
 	}
@@ -1115,15 +1085,13 @@ html, body {
 }
 
 /* Additional Responsive Improvements */
-@media (max-width: 992px) {
+@media ( max-width : 992px) {
 	.sidebar-menu {
 		padding: 0.8rem 0;
 	}
-	
 	.sidebar-menu li {
 		margin-bottom: 0.3rem;
 	}
-	
 	.sidebar-menu a {
 		padding: 0.7rem 1rem;
 		font-size: 0.9rem;
@@ -1131,17 +1099,15 @@ html, body {
 }
 
 /* Better touch targets for mobile */
-@media (max-width: 768px) {
+@media ( max-width : 768px) {
 	.sidebar-menu a {
 		min-height: 44px;
 		display: flex;
 		align-items: center;
 	}
-	
 	.btn {
 		min-height: 44px;
 	}
-	
 	.menu-toggle {
 		min-width: 44px;
 		min-height: 44px;
@@ -1149,45 +1115,38 @@ html, body {
 }
 
 /* Improved spacing for tablets */
-@media (min-width: 769px) and (max-width: 992px) {
+@media ( min-width : 769px) and (max-width: 992px) {
 	.main-content {
 		padding: 1rem 0.8rem;
 	}
-	
 	.top-bar {
 		padding: 0.9rem 1rem;
 	}
-	
 	.stats-cards {
 		gap: 1rem;
 	}
-	
 	.stat-card {
 		padding: 1.2rem 1rem;
 	}
 }
 
 /* Landscape phone optimization */
-@media (max-width: 768px) and (orientation: landscape) {
+@media ( max-width : 768px) and (orientation: landscape) {
 	.sidebar.active {
 		width: 200px;
 	}
-	
 	.main-content {
 		padding: 0.6rem;
 	}
-	
 	.stats-cards {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 0.8rem;
 	}
-	
 	.stat-card {
 		padding: 1rem;
 		flex-direction: row;
 		text-align: left;
 	}
-	
 	.stat-icon {
 		margin-right: 0.8rem;
 		margin-bottom: 0;
@@ -1236,22 +1195,26 @@ html, body {
 	<!-- Sidebar -->
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-header">
+			<img src="${pageContext.request.contextPath}/images/IJIMlogo.png"
+				alt="IJIM Logo" class="sidebar-logo">
 			<h2>IJIM</h2>
 		</div>
 
 		<nav class="sidebar-menu">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/admin/dashboard" class="active"> 
-					<i class="fas fa-home"></i> 
-					<span>Dashboard</span>
+				<li><a
+					href="${pageContext.request.contextPath}/admin/dashboard"
+					class="active"> <i class="fas fa-home"></i> <span>Dashboard</span>
 				</a></li>
-				
-				<li><a href="${pageContext.request.contextPath}/admin/submissions"> 
-					<i class="fas fa-file"></i> <span>Submissions</span>
+
+				<li><a
+					href="${pageContext.request.contextPath}/admin/submissions"> <i
+						class="fas fa-file"></i> <span>Submissions</span>
 				</a></li>
-				
-				<li><a href="${pageContext.request.contextPath}/admin/submissions1"> 
-					<i class="fas fa-file-alt"></i> <span>Paper Review</span> 
+
+				<li><a
+					href="${pageContext.request.contextPath}/admin/submissions1"> <i
+						class="fas fa-file-alt"></i> <span>Paper Review</span>
 				</a></li>
 
 
@@ -1259,16 +1222,20 @@ html, body {
 					<i class="fas fa-calendar"></i> <span>Conferences</span>
 				</a></li> --%>
 
-				<li><a href="${pageContext.request.contextPath}/editorial-board" target="_blank"> 
-					<i class="fas fa-users"></i> <span>Editorial Board</span>
+				<li><a
+					href="${pageContext.request.contextPath}/editorial-board"
+					target="_blank"> <i class="fas fa-users"></i> <span>Editorial
+							Board</span>
 				</a></li>
 
-				<li><a href="${pageContext.request.contextPath}/about" target="_blank"> 
-					<i class="fas fa-info-circle"></i> <span>About & Contact Us</span>
+				<li><a href="${pageContext.request.contextPath}/about"
+					target="_blank"> <i class="fas fa-info-circle"></i> <span>About
+							& Contact Us</span>
 				</a></li>
 
-				<li><a href="${pageContext.request.contextPath}/admin/author-login-details"> 
-					<i class="fas fa-user-lock"></i> <span>Author Login Details</span>
+				<li><a
+					href="${pageContext.request.contextPath}/admin/author-login-details">
+						<i class="fas fa-user-lock"></i> <span>Author Login Details</span>
 				</a></li>
 
 				<%-- <li><a href="${pageContext.request.contextPath}/admin/manage-content"> 
@@ -1278,31 +1245,36 @@ html, body {
 				<li><a href="${pageContext.request.contextPath}/submitArticle" target="_blank"> 
 					<i class="fas fa-upload"></i> <span>Submit Article</span>
 				</a></li> --%>
-				<li><a href="${pageContext.request.contextPath}/admin/manage-template"> 
-					<i class="fas fa-edit"></i> <span>PAGE EDIT</span>
+				<li><a
+					href="${pageContext.request.contextPath}/admin/manage-template">
+						<i class="fas fa-edit"></i> <span>PAGE EDIT</span>
 				</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/gallery"> 
-					<i class="fas fa-edit"></i> <span>Gallery</span>
-				</a></li>
-
-				<li><a href="${pageContext.request.contextPath}/admin/previous-volumes-issues"> 
-					<i class="fas fa-book"></i> <span>Previous Volumes And Issues</span>
+				<li><a href="${pageContext.request.contextPath}/admin/gallery">
+						<i class="fas fa-edit"></i> <span>Gallery</span>
 				</a></li>
 
-				<li><a href="${pageContext.request.contextPath}/admin/contact-enquiries"> 
-					<i class="fas fa-envelope-open"></i> <span>Contact Enquires</span>
+				<li><a
+					href="${pageContext.request.contextPath}/admin/previous-volumes-issues">
+						<i class="fas fa-book"></i> <span>Previous Volumes And
+							Issues</span>
 				</a></li>
 
-				<li><a href="${pageContext.request.contextPath}/" target="_blank"> 
-					<i class="fas fa-globe"></i> <span>Visit Website</span>
+				<li><a
+					href="${pageContext.request.contextPath}/admin/contact-enquiries">
+						<i class="fas fa-envelope-open"></i> <span>Contact Enquires</span>
 				</a></li>
-				
-				
 
-				<li><a href="${pageContext.request.contextPath}/logout"> 
-					<i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+				<li><a href="${pageContext.request.contextPath}/"
+					target="_blank"> <i class="fas fa-globe"></i> <span>Visit
+							Website</span>
 				</a></li>
-				
+
+
+
+				<li><a href="${pageContext.request.contextPath}/logout"> <i
+						class="fas fa-sign-out-alt"></i> <span>Logout</span>
+				</a></li>
+
 			</ul>
 		</nav>
 	</div>
@@ -1312,8 +1284,8 @@ html, body {
 		<!-- Top Bar -->
 		<div class="top-bar">
 			<div class="search-box">
-				<i class="fas fa-search" style="color: var(--rust);"></i> 
-				<input type="text" placeholder="Search submissions...">
+				<i class="fas fa-search" style="color: var(--rust);"></i> <input
+					type="text" placeholder="Search submissions...">
 			</div>
 			<div class="user-info">
 				<div class="user-details">
@@ -1442,7 +1414,7 @@ html, body {
 												</div>
 
 												<!-- EMAIL Button with Tooltip -->
-												<!--  <div class="tooltip">
+		<!--  <div class="tooltip">
 													<button class="btn btn-sm btn-email"
 														onclick="openComposeMail('${s.author.id}', '${s.author.email}')">
 														<i class="fas fa-envelope"></i>
@@ -1451,7 +1423,7 @@ html, body {
 												</div>
 
 												<!-- Edit Button with Tooltip -->
-												<!--  <div class="tooltip">
+		<!--  <div class="tooltip">
 													<a href="${pageContext.request.contextPath}/admin/edit/${s.id}"
 														class="btn btn-sm btn-edit"> 
 														<i class="fas fa-edit"></i>
@@ -1476,8 +1448,8 @@ html, body {
 		</div>
 	</div>-->
 
-	<!-- Compose Mail Modal -->
-	<!--  <div id="mailModal" class="modal">
+		<!-- Compose Mail Modal -->
+		<!--  <div id="mailModal" class="modal">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3>
@@ -1520,65 +1492,67 @@ html, body {
 		</div>
 	</div> -->
 
-	<script>
-    // Open Compose Mail Modal
-    function openComposeMail(authorId, authorEmail) {
-        document.getElementById('mailTo').value = authorEmail;
-        document.getElementById('mailSubmissionId').value = authorId;
-        document.getElementById('mailModal').style.display = 'flex';
-    }
+		<script>
+			// Open Compose Mail Modal
+			function openComposeMail(authorId, authorEmail) {
+				document.getElementById('mailTo').value = authorEmail;
+				document.getElementById('mailSubmissionId').value = authorId;
+				document.getElementById('mailModal').style.display = 'flex';
+			}
 
-    // Close Compose Mail Modal
-    function closeMailModal() {
-        document.getElementById('mailModal').style.display = 'none';
-    }
+			// Close Compose Mail Modal
+			function closeMailModal() {
+				document.getElementById('mailModal').style.display = 'none';
+			}
 
-    // Close modal when clicking outside
-    window.addEventListener('click', function(event) {
-        const mailModal = document.getElementById('mailModal');
-        if (event.target === mailModal) {
-            closeMailModal();
-        }
-    });
+			// Close modal when clicking outside
+			window.addEventListener('click', function(event) {
+				const mailModal = document.getElementById('mailModal');
+				if (event.target === mailModal) {
+					closeMailModal();
+				}
+			});
 
-    // Mobile menu toggle with overlay
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-    
-    function toggleSidebar() {
-        sidebar.classList.toggle('active');
-        sidebarOverlay.classList.toggle('active');
-    }
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleSidebar);
-    }
-    
-    // Close sidebar when clicking overlay
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', toggleSidebar);
-    }
-    
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
-        const isClickInsideSidebar = sidebar.contains(event.target);
-        const isClickOnToggle = menuToggle && menuToggle.contains(event.target);
-        
-        if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
-            if (!isClickInsideSidebar && !isClickOnToggle) {
-                toggleSidebar();
-            }
-        }
-    });
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            sidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-        }
-    });
-    </script>
+			// Mobile menu toggle with overlay
+			const menuToggle = document.getElementById('menuToggle');
+			const sidebar = document.getElementById('sidebar');
+			const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+			function toggleSidebar() {
+				sidebar.classList.toggle('active');
+				sidebarOverlay.classList.toggle('active');
+			}
+
+			if (menuToggle) {
+				menuToggle.addEventListener('click', toggleSidebar);
+			}
+
+			// Close sidebar when clicking overlay
+			if (sidebarOverlay) {
+				sidebarOverlay.addEventListener('click', toggleSidebar);
+			}
+
+			// Close sidebar when clicking outside on mobile
+			document.addEventListener('click', function(event) {
+				const isClickInsideSidebar = sidebar.contains(event.target);
+				const isClickOnToggle = menuToggle
+						&& menuToggle.contains(event.target);
+
+				if (window.innerWidth <= 768
+						&& sidebar.classList.contains('active')) {
+					if (!isClickInsideSidebar && !isClickOnToggle) {
+						toggleSidebar();
+					}
+				}
+			});
+
+			// Handle window resize
+			window.addEventListener('resize', function() {
+				if (window.innerWidth > 768) {
+					sidebar.classList.remove('active');
+					sidebarOverlay.classList.remove('active');
+				}
+			});
+		</script>
 </body>
 </html>

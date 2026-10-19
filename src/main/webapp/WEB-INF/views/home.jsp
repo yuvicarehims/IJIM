@@ -1269,9 +1269,7 @@ translateX
 							href="mailto:editor@ayuscript.com"
 							class="text-light text-decoration-none">
 								arcaexperts@gmail.com </a></li>
-						<li class="mb-2"><i class="fas fa-globe me-2"></i> <a
-							href="http://www.ayuscript.com'}/"
-							class="text-light text-decoration-none"> natureayurved.com </a></li>
+						
 						<li><i class="fas fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
 				</div>
