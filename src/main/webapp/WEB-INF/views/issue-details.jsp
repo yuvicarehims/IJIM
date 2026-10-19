@@ -562,8 +562,7 @@ section {
 			<div class="issue-header">
 				<h1>Articles in this Issue</h1>
 
-				<h3>nature Ayurved-International Journal of Ayurved Science and
-					Research</h3>
+				<h3>International Journal of Indian Medicine</h3>
 				<p class="lead">
 					Volume
 					<c:choose>
