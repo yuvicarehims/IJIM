@@ -133,6 +133,7 @@ public class HomeController {
                     "Copyright form (4).pdf",
                     "Copyright form (5).pdf",
                     "copyright-form.pdf",
+                    "IJIMCopyright form.pdf",
                     "Copyright_Form.pdf"
             };
 

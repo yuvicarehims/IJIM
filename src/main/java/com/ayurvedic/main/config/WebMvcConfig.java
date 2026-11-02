@@ -20,6 +20,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         
         registry.addResourceHandler("/images/**")
         .addResourceLocations("/WEB-INF/views/images/");
+        
+        
+        registry.addResourceHandler("/ijim/galleryimage/**")
+        .addResourceLocations("file:src/main/webapp/ijim/galleryimage/");
     }
     
     @Override

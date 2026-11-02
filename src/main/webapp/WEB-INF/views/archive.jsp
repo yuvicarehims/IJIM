@@ -15,6 +15,21 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 	rel="stylesheet" />
+	
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
+
+<style>
+    body,
+    .container,
+    .team-card,
+    .horizontal-card,
+    .section-title,
+    h1, h2, h3, h4, h5, h6,
+    p, a, span, b {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
 
 <style>
 :root {
@@ -697,8 +712,8 @@ header {
 				</div>
 
 				<div class="header-issn px-3 px-md-4 px-lg-5">
-					<span class="d-none d-md-inline">ISSN: 3139-8871</span> <span
-						class="d-md-none">ISSN: 3139-8871</span>
+					<span class="d-none d-md-inline">ISSN: 2582-7634</span> <span
+						class="d-md-none">ISSN: 2582-7634</span>
 				</div>
 			</div>
 		</div>
@@ -756,8 +771,7 @@ header {
 
 			<h1 class="archives-title">Archives</h1>
 
-			<h4 class="archives-title" style="font-size: 30px;">nature
-				Ayurved-International Journal of Ayurved Science and Research</h4>
+			<!-- <h4 class="archives-title" style="font-size: 30px;">International Journal of Indian Medicine</h4> -->
 
 
 			<c:choose>
@@ -925,12 +939,12 @@ header {
 
 						<!-- Phone -->
 						<div style="font-size: 13px; margin-bottom: 5px;">
-							<i class="fas fa-phone me-2"></i> (+91) 9404 233 935
+							<i class="fas fa-phone me-2"></i> (+91) 8767571175
 						</div>
 
 						<!-- Email -->
 						<div style="font-size: 13px;">
-							<i class="fas fa-envelope me-2"></i> arcaexperts@gmail.com
+							<i class="fas fa-envelope me-2"></i> ijimjournal1@gmail.com
 						</div>
 
 					</div>
@@ -958,8 +972,8 @@ header {
 							href="${pageContext.request.contextPath}/current-issue"
 							class="text-light text-decoration-none">Current Issue</a></li>
 						<li class="mb-2"><a
-							href="${pageContext.request.contextPath}/uploads/IJIMindexing.pdf"
-							target="_blank" class="text-light text-decoration-none">Index</a>
+							href="/ijim/IJIMindexing.pdf"
+							target="_blank" class="text-light text-decoration-none">Indexing</a>
 						</li>
 					</ul>
 				</div>
@@ -987,11 +1001,9 @@ header {
 						<li class="mb-2"><i class="fas fa-envelope me-2"></i> <a
 							href="mailto:editor@ayuscript.com"
 							class="text-light text-decoration-none">
-								natureayurvedjournal@gmail.com </a></li>
-						<li class="mb-2"><i class="fas fa-globe me-2"></i> <a
-							href="http://www.ayuscript.com'}/"
-							class="text-light text-decoration-none"> natureayurved.com </a></li>
-						<li><i class="fas fa-barcode me-2"></i> ISSN: 0000-0000</li>
+								ijimjournal1@gmail.com </a></li>
+						
+						<li><i class="fas fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
 				</div>
 
@@ -1001,7 +1013,7 @@ header {
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyrights © 2020 Ayurveda Research & Career Academy (ARCA) | All
+				Copyright @2020 International Journal of Indian Medicine | All
 				Rights Reserved | <a href="#"
 					class="text-light text-decoration-none">Privacy Policy</a>
 			</div>

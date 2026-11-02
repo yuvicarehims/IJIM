@@ -8,6 +8,32 @@
 <title>Admin Dashboard - IJIM</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
+
+<style>
+    body,
+    .container,
+    .team-card,
+    .horizontal-card,
+    .section-title,
+    .header-top,
+    .header-title,
+    .heading-responsive,
+    .impact-factor,
+    .header-issn,
+    footer,
+    footer div,
+    footer h6,
+    footer li,
+    footer a,
+    h1, h2, h3, h4, h5, h6,
+    p, a, span, b {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>	
+	
 <style>
 .sidebar-header {
 	display: flex;
@@ -1222,7 +1248,7 @@ html, body {
 					<i class="fas fa-calendar"></i> <span>Conferences</span>
 				</a></li> --%>
 
-				<li><a
+				<%-- <li><a
 					href="${pageContext.request.contextPath}/editorial-board"
 					target="_blank"> <i class="fas fa-users"></i> <span>Editorial
 							Board</span>
@@ -1231,7 +1257,7 @@ html, body {
 				<li><a href="${pageContext.request.contextPath}/about"
 					target="_blank"> <i class="fas fa-info-circle"></i> <span>About
 							& Contact Us</span>
-				</a></li>
+				</a></li> --%>
 
 				<li><a
 					href="${pageContext.request.contextPath}/admin/author-login-details">
@@ -1249,7 +1275,7 @@ html, body {
 					href="${pageContext.request.contextPath}/admin/manage-template">
 						<i class="fas fa-edit"></i> <span>PAGE EDIT</span>
 				</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/gallery">
+				<li><a href="${pageContext.request.contextPath}/admin/gallery" target="_blank">
 						<i class="fas fa-edit"></i> <span>Gallery</span>
 				</a></li>
 

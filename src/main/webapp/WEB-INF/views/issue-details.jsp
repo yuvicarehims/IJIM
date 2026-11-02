@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Issue • AYUSCRIPT</title>
+<title>Issue • IJIM</title>
 
 <!-- Fonts & Bootstrap (same as current-issue.jsp) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +19,38 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
 
 <style>
+    body,
+    .container,
+    .team-card,
+    .horizontal-card,
+    .section-title,
+    h1, h2, h3, h4, h5, h6,
+    p, a, span, b {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
+
+<style>
+.article-item {
+	position: relative;
+}
+
+.page-number {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	background: #eef2ff;
+	color: #3730a3;
+	padding: 5px 10px;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
 :root {
 	--deep-green: rgb(30, 140, 193);
 	--leaf: #2b8a5f;
@@ -375,7 +405,6 @@ section {
 	letter-spacing: 2px;
 	word-break: break-word;
 	white-space: nowrap;
-    
 }
 
 .header-issn {
@@ -593,6 +622,11 @@ section {
 						<div class="article-list">
 							<c:forEach var="article" items="${publishedArticles}">
 								<div class="article-item">
+
+									<span class="page-number"> Pages
+										${article.numberOfPages} </span>
+
+
 									<div class="article-title">${article.title}</div>
 
 									<div class="article-meta">

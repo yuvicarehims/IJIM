@@ -15,6 +15,24 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 	rel="stylesheet">
+	
+
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
+
+<style>
+    body,
+    .container,
+    .team-card,
+    .horizontal-card,
+    .section-title,
+    h1, h2, h3, h4, h5, h6,
+    p, a, span, b {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
+
+	
 
 <style>
 :root {
@@ -948,7 +966,7 @@ body {
 						href="${pageContext.request.contextPath}/author-guideline">Author
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/contact">Contact</a></li>
+						href="${pageContext.request.contextPath}/contact">Contact US</a></li>
 
 					<li class="nav-item"><a
 						class="nav-link ${page=='pdf'?'active':''}"
@@ -996,12 +1014,12 @@ body {
 
 						<!-- Phone -->
 						<div style="font-size: 13px; margin-bottom: 5px;">
-							<i class="fas fa-phone me-2"></i> (+91) 9404 233 935
+							<i class="fas fa-phone me-2"></i> (+91) 8767571175
 						</div>
 
 						<!-- Email -->
 						<div style="font-size: 13px;">
-							<i class="fas fa-envelope me-2"></i> arcaexperts@gmail.com
+							<i class="fas fa-envelope me-2"></i> ijimjournal1@gmail.com
 						</div>
 
 					</div>
@@ -1029,8 +1047,8 @@ body {
 							href="${pageContext.request.contextPath}/current-issue"
 							class="text-light text-decoration-none">Current Issue</a></li>
 						<li class="mb-2"><a
-							href="${pageContext.request.contextPath}/uploads/IJIMindexing.pdf"
-							target="_blank" class="text-light text-decoration-none">Index</a>
+							href="/ijim/IJIMindexing.pdf"
+							target="_blank" class="text-light text-decoration-none">Indexing</a>
 						</li>
 					</ul>
 				</div>
@@ -1058,11 +1076,8 @@ body {
 						<li class="mb-2"><i class="fas fa-envelope me-2"></i> <a
 							href="mailto:arcaexperts@gmail.com"
 							class="text-light text-decoration-none">
-								arcaexperts@gmail.com </a></li>
-						<li class="mb-2"><i class="fas fa-globe me-2"></i> <a
-							href="http://www.ayuscript.com'}/"
-							class="text-light text-decoration-none"> natureayurved.com </a></li>
-						<li><i class="fas fa-barcode me-2"></i> ISSN: 2582-7634</li>
+								ijimjournal1@gmail.com </a></li>
+												<li><i class="fas fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
 				</div>
 
@@ -1072,7 +1087,7 @@ body {
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyrights © 2020 Ayurveda Research & Career Academy (ARCA) | All
+				Copyright @2020 International Journal of Indian Medicine | All
 				Rights Reserved | <a href="#"
 					class="text-light text-decoration-none">Privacy Policy</a>
 			</div>

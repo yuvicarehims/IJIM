@@ -37,6 +37,27 @@ public class CurrentIssueController {
         List<Submission> publishedArticles = submissionService.getPublishedSubmissionsForCurrentQuarter();
         // Get current quarter information for display
         java.util.Map<String, Object> quarterInfo = submissionService.getCurrentQuarterInfo();
+        
+        
+        if (publishedArticles != null && !publishedArticles.isEmpty()) {
+            Submission latestArticle = publishedArticles.get(0);
+
+            String actualIssue = latestArticle.getIssue();
+
+            if (actualIssue != null) {
+                java.util.regex.Matcher matcher =
+                        java.util.regex.Pattern
+                                .compile("(?i)^\\s*Issue\\s*(\\d+)\\s*$")
+                                .matcher(actualIssue);
+
+                if (matcher.matches()) {
+                    quarterInfo.put(
+                            "displayIssue",
+                            Integer.parseInt(matcher.group(1))
+                    );
+                }
+            }
+        }
 
         model.addAttribute("publishedArticles", publishedArticles);
         model.addAttribute("quarterInfo", quarterInfo);
@@ -77,12 +98,15 @@ public class CurrentIssueController {
         Optional<Submission> articleOpt = submissionService.getSubmissionById(id);
         if (articleOpt.isPresent()) {
             Submission article = articleOpt.get();
+            java.util.Map<String, Object> quarterInfo = submissionService.getCurrentQuarterInfo();
+            model.addAttribute("quarterInfo", quarterInfo);
             // Check if article is UNDER_PUBLISHED (only these show on current issue)
             if (article.getStatus() != null && "UNDER_PUBLISHED".equals(article.getStatus().name())) {
                 model.addAttribute("article", article);
                 return "abstract-view"; // This will show only abstract
             }
         }
+        
         return "redirect:/current-issue";
     }
 

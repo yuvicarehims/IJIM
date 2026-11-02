@@ -3,6 +3,7 @@ package com.ayurvedic.main.service;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,7 +14,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ayurvedic.main.entity.PublishedArticle;
 import com.ayurvedic.main.entity.Submission;
 import com.ayurvedic.main.entity.Submission.Status;
 import com.ayurvedic.main.entity.User;
@@ -60,45 +60,110 @@ public class SubmissionService {
 	}
 
 	// ✅ NEW: Get published submissions for current quarter (articles from specific Volume/Issue)
+	
+	/*
+	 * this is commented beacuse we create new method just below that for ijim if
+	 * current volume data not prestnt then show previous data
+	 */ 
+	/*
+	 * public List<Submission> getPublishedSubmissionsForCurrentQuarter() { // Use
+	 * the same logic as display info to ensure consistency java.util.Map<String,
+	 * Object> info = getCurrentQuarterInfo(); int displayIssue = (int)
+	 * info.get("displayIssue"); int displayVolumeNum = (int)
+	 * info.get("displayVolume");
+	 * 
+	 * String targetVolume = "Volume " + displayVolumeNum; String targetIssue =
+	 * "Issue " + displayIssue; String targetIssueAlt = "Issue " +
+	 * String.format("%02d", displayIssue); // handles "Issue 01", "Issue 04" etc.
+	 * 
+	 * // Filter articles by UNDER_PUBLISHED status AND matching Volume/Issue return
+	 * submissionRepository.findByStatusOrderByUpdatedAtDesc(Submission.Status.
+	 * UNDER_PUBLISHED).stream() .filter(sub -> { String vol = sub.getVolume();
+	 * String iss = sub.getIssue();
+	 * 
+	 * if (vol == null || iss == null) return false;
+	 * 
+	 * boolean volumeMatch = vol.trim().equalsIgnoreCase(targetVolume); boolean
+	 * issueMatch = iss.trim().equalsIgnoreCase(targetIssue) ||
+	 * iss.trim().equalsIgnoreCase(targetIssueAlt);
+	 * 
+	 * System.out.println("DB Volume = [" + vol + "]");
+	 * System.out.println("Target Volume = [" + targetVolume + "]");
+	 * System.out.println("DB Issue = [" + iss + "]");
+	 * System.out.println("Target Issue = [" + targetIssue + "]");
+	 * System.out.println("Volume Match = " + volumeMatch);
+	 * System.out.println("Issue Match = " + issueMatch);
+	 * 
+	 * return volumeMatch && issueMatch; }) .sorted((s1, s2) -> { // Sort by
+	 * publication date DESC if (s1.getPublicationDate() == null ||
+	 * s2.getPublicationDate() == null) { return
+	 * s2.getUpdatedAt().compareTo(s1.getUpdatedAt()); } return
+	 * s2.getPublicationDate().compareTo(s1.getPublicationDate()); })
+	 * .collect(Collectors.toList()); }
+	 */
+	
+	
 	public List<Submission> getPublishedSubmissionsForCurrentQuarter() {
-		// Use the same logic as display info to ensure consistency
 		java.util.Map<String, Object> info = getCurrentQuarterInfo();
 		int displayIssue = (int) info.get("displayIssue");
 		int displayVolumeNum = (int) info.get("displayVolume");
-		
+
 		String targetVolume = "Volume " + displayVolumeNum;
-		String targetIssue = "Issue " + displayIssue;
-		String targetIssueAlt = "Issue " + String.format("%02d", displayIssue); // handles "Issue 01", "Issue 04" etc.
+
+		List<Submission> submissions = submissionRepository
+		        .findByStatusOrderByUpdatedAtDesc(Submission.Status.UNDER_PUBLISHED);
+
+		// Current issue se previous issues tak check karo
+		for (int issue = displayIssue; issue >= 1; issue--) {
+
+		    String targetIssue = "Issue " + issue;
+		    String targetIssueAlt = "Issue " + String.format("%02d", issue);
+
+		    List<Submission> articles = submissions.stream()
+		            .filter(sub -> {
+		                String vol = sub.getVolume();
+		                String iss = sub.getIssue();
+
+		                if (vol == null || iss == null) return false;
+
+		                boolean volumeMatch =
+		                        vol.trim().equalsIgnoreCase(targetVolume);
+
+		                boolean issueMatch =
+		                        iss.trim().equalsIgnoreCase(targetIssue)
+		                        || iss.trim().equalsIgnoreCase(targetIssueAlt);
+
+		                System.out.println("DB Volume = [" + vol + "]");
+		                System.out.println("Target Volume = [" + targetVolume + "]");
+		                System.out.println("DB Issue = [" + iss + "]");
+		                System.out.println("Target Issue = [" + targetIssue + "]");
+		                System.out.println("Volume Match = " + volumeMatch);
+		                System.out.println("Issue Match = " + issueMatch);
+
+		                return volumeMatch && issueMatch;
+		            })
+		            .sorted((s1, s2) -> {
+		                // Original sorting logic unchanged
+		                if (s1.getPublicationDate() == null
+		                        || s2.getPublicationDate() == null) {
+		                    return s2.getUpdatedAt().compareTo(s1.getUpdatedAt());
+		                }
+		                return s2.getPublicationDate()
+		                        .compareTo(s1.getPublicationDate());
+		            })
+		            .collect(Collectors.toList());
+
+		    // Data mil gaya toh return karo
+		    if (!articles.isEmpty()) {
+		        return articles;
+		    }
+		}
+
+		// Koi bhi previous issue available nahi hai
+		return new java.util.ArrayList<>();
 		
-		// Filter articles by UNDER_PUBLISHED status AND matching Volume/Issue
-		return submissionRepository.findByStatusOrderByUpdatedAtDesc(Submission.Status.UNDER_PUBLISHED).stream()
-				.filter(sub -> {
-					String vol = sub.getVolume();
-					String iss = sub.getIssue();
-					
-					if (vol == null || iss == null) return false;
-					
-					boolean volumeMatch = vol.trim().equalsIgnoreCase(targetVolume);
-					boolean issueMatch = iss.trim().equalsIgnoreCase(targetIssue) || iss.trim().equalsIgnoreCase(targetIssueAlt);
-					
-					 System.out.println("DB Volume = [" + vol + "]");
-					    System.out.println("Target Volume = [" + targetVolume + "]");
-					    System.out.println("DB Issue = [" + iss + "]");
-					    System.out.println("Target Issue = [" + targetIssue + "]");
-					    System.out.println("Volume Match = " + volumeMatch);
-					    System.out.println("Issue Match = " + issueMatch);
-					
-					return volumeMatch && issueMatch;
-				})
-				.sorted((s1, s2) -> {
-					// Sort by publication date DESC
-					if (s1.getPublicationDate() == null || s2.getPublicationDate() == null) {
-						return s2.getUpdatedAt().compareTo(s1.getUpdatedAt());
-					}
-					return s2.getPublicationDate().compareTo(s1.getPublicationDate());
-				})
-				.collect(Collectors.toList());
 	}
+	
 	
 	// ✅ NEW: Get current quarter information for display
 	public java.util.Map<String, Object> getCurrentQuarterInfo() {
@@ -111,7 +176,7 @@ public class SubmissionService {
 	    int displayIssue = currentMonth;
 
 	    // Volume starts from 2026
-	    int startYear = 2022;
+	    int startYear = 2020;
 	    int displayVolume = currentYear - startYear + 1;
 
 	    java.util.Map<String, Object> info = new java.util.HashMap<>();
@@ -209,13 +274,37 @@ public class SubmissionService {
 	 */
 	public List<Submission> findByYearVolumeIssue(int year, String volume, String issue) {
 
-		return submissionRepository
-				.findByStatusAndVolumeAndIssueAndFlexibleYear(
-						Status.UNDER_PUBLISHED,   // only UNDER_PUBLISHED (shows in archives)
-						volume,             // stored as "Volume 4"
-						issue,              // stored as "Issue 01"
-						year                // stored as integer
-						);
+		/*
+		 * return submissionRepository .findByStatusAndVolumeAndIssueAndFlexibleYear(
+		 * Status.UNDER_PUBLISHED, // only UNDER_PUBLISHED (shows in archives) volume,
+		 * // stored as "Volume 4" issue, // stored as "Issue 01" year // stored as
+		 * integer );
+		 */
+		
+		List<Submission> articles = submissionRepository
+	            .findByStatusAndVolumeAndIssueAndFlexibleYear(
+	                    Status.UNDER_PUBLISHED,
+	                    volume,
+	                    issue,
+	                    year
+	            );
+
+	    articles.sort(Comparator.comparingInt(article -> {
+	        String pages = article.getNumberOfPages();
+
+	        if (pages == null || !pages.matches("\\d+\\s*-\\s*\\d+")) {
+	            return Integer.MAX_VALUE;
+	        }
+
+	        return Integer.parseInt(
+	                pages.split("-")[0].trim()
+	        );
+	    }));
+
+		
+		
+		return articles;
+		
 	}
 	
 	public List<String> getDistinctArticleTypes() {

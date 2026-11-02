@@ -34,7 +34,7 @@ public class TemplateDataService {
 	public boolean templateidPresent(ContentTemplate contentTemplate) {
 	System.out.println("cjkfhjfn"+contentTemplate.getId());
 		return templateDataRepository.existsByTemplate_Id(contentTemplate.getId());
-	}
+	} 
 
 	public TemplateData updateContent(TemplateData temp) {
 

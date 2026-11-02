@@ -21,6 +21,22 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
+
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
+
+<style>
+    body,
+    .container,
+    .team-card,
+    .horizontal-card,
+    .section-title,
+    h1, h2, h3, h4, h5, h6,
+    p, a, span, b {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
+
 <style>
 :root {
 	--deep-green: rgb(30, 140, 193);;
@@ -367,6 +383,31 @@ body {
 		<div class="abstract-container">
 
 
+
+			<div class="article-meta-info">
+				<div class="row g-3">
+					<div class="col-12">
+						<div class="meta-item">
+							<div class="meta-value"
+								style="font-size: 18px; font-weight: 600; text-align: center;">
+
+								Year: ${quarterInfo.displayYear} | ${article.volume} |
+								 ${article.issue}
+
+								<c:if test="${not empty article.numberOfPages}">
+                        | Pages: ${article.numberOfPages}
+                    </c:if>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
 			<!-- Authors -->
 			<c:if test="${not empty article.authorNames}">
 				<div class="authors-list">
@@ -459,7 +500,7 @@ body {
 						<div style="font-size: 13px; margin-bottom: 5px;">
 							<i class="fas fa-phone me-2"></i> (+91) 9404 233 935
 						</div>
-						
+
 						<!-- Email -->
 						<div style="font-size: 13px;">
 							<i class="fas fa-envelope me-2"></i> arcaexperts@gmail.com
@@ -523,7 +564,8 @@ body {
 					<h5
 						style="color: var(--gold); font-family: Georgia, serif; margin-bottom: 20px;">Contact</h5>
 					<ul class="footer-links">
-						<li><i class="fa fa-envelope me-2"></i> arcaexperts@gmail.com</li>
+						<li><i class="fa fa-envelope me-2"></i>
+							ijimjournal1@gmail.com</li>
 						<li><i class="fa fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
 				</div>
@@ -532,8 +574,8 @@ body {
 
 			<div class="footer-bottom mt-4 pt-3"
 				style="border-top: 1px solid rgba(255, 255, 255, 0.15); text-align: center;">
-				<p class="mb-0" style="font-size: 14px;">Copyrights © 2020 Ayurveda Research & Career Academy (ARCA)
-					All Rights Reserved.</p>
+				<p class="mb-0" style="font-size: 14px;">Copyright @2020
+					International Journal of Indian Medicine All Rights Reserved.</p>
 			</div>
 
 		</div>

@@ -57,6 +57,9 @@ body {
     border-bottom: 1px solid rgba(251, 246, 238, 0.1);
     text-align: center;
     background: var(--primary-dark);
+    display: flex;
+	align-items: center;
+	gap: 15px;
 }
 
 .sidebar-header h2 {
@@ -343,12 +346,19 @@ body {
     width:100%;
     height:300px;
 }
+.sidebar-logo {
+	width: 55px;
+	height: 55px;
+	object-fit: contain;
+}
 </style>
 </head>
 <body>
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
+        <img src="${pageContext.request.contextPath}/images/IJIMlogo.png"
+				alt="IJIM Logo" class="sidebar-logo">
             <h2>IJIM</h2>
         </div>
         <nav class="sidebar-menu">
@@ -370,13 +380,6 @@ body {
                     <i class="fas fa-calendar"></i> <span>Conferences</span>
                 </a></li> --%>
 
-                <li><a href="${pageContext.request.contextPath}/editorial-board" target="_blank"> 
-                    <i class="fas fa-users"></i> <span>Editorial Board</span>
-                </a></li>
-
-                <li><a href="${pageContext.request.contextPath}/about" target="_blank"> 
-                    <i class="fas fa-info-circle"></i> <span>About & Contact Us</span>
-                </a></li>
 
                 <li><a href="${pageContext.request.contextPath}/admin/author-login-details"> 
                     <i class="fas fa-user-lock"></i> <span>Author Login Details</span>
@@ -393,7 +396,7 @@ body {
                 <li><a href="${pageContext.request.contextPath}/admin/manage-template"> 
 					<i class="fas fa-edit"></i> <span>PAGE EDIT</span>
 				</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/gallery"> 
+				<li><a href="${pageContext.request.contextPath}/admin/gallery" target="_blank"> 
 					<i class="fas fa-edit"></i> <span>Gallery</span>
 				</a></li>
 

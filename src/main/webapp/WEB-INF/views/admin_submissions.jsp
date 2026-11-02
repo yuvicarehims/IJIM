@@ -21,6 +21,19 @@
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
+
+<style>
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    body :not(i):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad):not(.fa-solid):not(.fa-brands):not(.fa-regular) {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
 
 <style>
 .sidebar-header {
@@ -1461,7 +1474,7 @@ table#submissionsTable th:nth-child(11), table#submissionsTable td:nth-child(11)
 										<i class="fas fa-calendar"></i> <span>Conferences</span>
 									</a></li> --%>
 
-				<li><a
+				<%-- <li><a
 					href="${pageContext.request.contextPath}/editorial-board"
 					target="_blank"> <i class="fas fa-users"></i> <span>Editorial
 							Board</span>
@@ -1470,7 +1483,7 @@ table#submissionsTable th:nth-child(11), table#submissionsTable td:nth-child(11)
 				<li><a href="${pageContext.request.contextPath}/about"
 					target="_blank"> <i class="fas fa-info-circle"></i> <span>About
 							& Contact Us</span>
-				</a></li>
+				</a></li> --%>
 
 				<li><a
 					href="${pageContext.request.contextPath}/admin/author-login-details">
@@ -1488,7 +1501,7 @@ table#submissionsTable th:nth-child(11), table#submissionsTable td:nth-child(11)
 					href="${pageContext.request.contextPath}/admin/manage-template">
 						<i class="fas fa-edit"></i> <span>PAGE EDIT</span>
 				</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/gallery">
+				<li><a href="${pageContext.request.contextPath}/admin/gallery" target="_blank">
 						<i class="fas fa-edit"></i> <span>Gallery</span>
 				</a></li>
 

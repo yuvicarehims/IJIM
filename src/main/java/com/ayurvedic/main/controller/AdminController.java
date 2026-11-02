@@ -54,6 +54,7 @@ import com.ayurvedic.main.entity.PublishedArticle;
 import com.ayurvedic.main.entity.Submission;
 import com.ayurvedic.main.entity.Submission.Status;
 import com.ayurvedic.main.entity.TemplateData;
+import com.ayurvedic.main.entity.UrlData;
 import com.ayurvedic.main.entity.User;
 import com.ayurvedic.main.entity.Volume;
 import com.ayurvedic.main.repository.ArticleTypeRepository;
@@ -67,6 +68,7 @@ import com.ayurvedic.main.service.PageContentService;
 import com.ayurvedic.main.service.PdfDocumentService;
 import com.ayurvedic.main.service.SubmissionService;
 import com.ayurvedic.main.service.TemplateDataService;
+import com.ayurvedic.main.service.urlService;
 // PDF imports
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
@@ -108,6 +110,9 @@ public class AdminController {
 	
 	@Autowired
 	private  PdfDocumentService pdfDocumentService;
+	
+	@Autowired
+	private urlService urlService;
 
 	// ✅ TEXT EXTRACTION METHODS - UPDATED WITH PDF SUPPORT
 	private String extractTextFromFile(File file) {
@@ -1575,7 +1580,7 @@ public class AdminController {
 			 */
 			 
 	        
-	        String uploadDir = "/opt/tomcat10/webapps/natureuploads/";
+	        String uploadDir = "/opt/tomcat10/webapps/ijim/galleryimage/";
 
 	        File dir = new File(uploadDir);
 
@@ -1613,7 +1618,7 @@ public class AdminController {
 		 * "uploads";
 		 */
 	    
-	    String uploadDir = "/opt/tomcat10/webapps/natureuploads/";
+	    String uploadDir = "/opt/tomcat10/webapps/ijim/galleryimage";
 
 	    File folder = new File(uploadDir);
 
@@ -1629,6 +1634,13 @@ public class AdminController {
 
 	            imageList.add(file.getName());
 	        }
+	    }
+	    
+	    Optional<UrlData> urlData = urlService.getUrlData();
+
+	    if (urlData.isPresent()) {
+	        String url = urlData.get().getUrl();
+	        model.addAttribute("url", url);
 	    }
 
 	    model.addAttribute("images", imageList);

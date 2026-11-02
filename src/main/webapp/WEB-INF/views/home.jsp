@@ -13,6 +13,21 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 	rel="stylesheet">
+	
+	
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+	
+
+
+<style>
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    body :not(i):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad):not(.fa-solid):not(.fa-brands):not(.fa-regular) {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
 
 <style>
 :root {
@@ -1049,7 +1064,7 @@ translateX
 
 					<li class="nav-item"><a
 						class="nav-link ${page=='contact'?'active':''}"
-						href="${pageContext.request.contextPath}/contact">CONTACT</a></li>
+						href="${pageContext.request.contextPath}/contact">CONTACT US</a></li>
 						
 				    <li class="nav-item"><a
 						class="nav-link ${page=='pdf'?'active':''}"
@@ -1206,12 +1221,12 @@ translateX
 
 						<!-- Phone -->
 						<div style="font-size: 13px; margin-bottom: 5px;">
-							<i class="fas fa-phone me-2"></i> (+91) 9404 233 935
+							<i class="fas fa-phone me-2"></i> (+91) 8767571175
 						</div>
 
 						<!-- Email -->
 						<div style="font-size: 13px;">
-							<i class="fas fa-envelope me-2"></i> arcaexperts@gmail.com
+							<i class="fas fa-envelope me-2"></i> ijimjournal1@gmail.com
 						</div>
 
 					</div>
@@ -1238,9 +1253,14 @@ translateX
 						<li class="mb-2"><a
 							href="${pageContext.request.contextPath}/current-issue"
 							class="text-light text-decoration-none">Current Issue</a></li>
+						<%-- <li class="mb-2"><a
+							href="${pageContext.request.contextPath}/ijim/IJIMindexing.pdf"
+							target="_blank" class="text-light text-decoration-none">Indexing</a>
+						</li> for local below for server--%>
+						
 						<li class="mb-2"><a
-							href="${pageContext.request.contextPath}/uploads/IJIMindexing.pdf"
-							target="_blank" class="text-light text-decoration-none">Index</a>
+							href="/ijim/IJIMindexing.pdf" 
+							target="_blank" class="text-light text-decoration-none">Indexing</a>
 						</li>
 					</ul>
 				</div>
@@ -1268,7 +1288,7 @@ translateX
 						<li class="mb-2"><i class="fas fa-envelope me-2"></i> <a
 							href="mailto:editor@ayuscript.com"
 							class="text-light text-decoration-none">
-								arcaexperts@gmail.com </a></li>
+								ijimjournal1@gmail.com </a></li>
 						
 						<li><i class="fas fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
@@ -1280,7 +1300,7 @@ translateX
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyrights © 2020 Ayurveda Research & Career Academy (ARCA) | All Rights Reserved  <a href="#"
+				Copyright @2020 International Journal of Indian Medicine | All Rights Reserved  <a href="#"
 					class="text-light text-decoration-none"></a>
 			</div>
 

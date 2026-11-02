@@ -911,7 +911,7 @@ to {
 						href="${pageContext.request.contextPath}/author-guideline">Author
 							Guideline</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/contact">Contact</a></li>
+						href="${pageContext.request.contextPath}/contact">Contact US</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/policy" target="_blank">Policy</a></li>
 				</ul>
@@ -1129,9 +1129,8 @@ to {
 						style="color: var(--gold); font-family: Georgia, serif; margin-bottom: 20px; font-size: 16px;">Contact</h5>
 					<ul class="footer-links">
 						<li><i class="fa fa-envelope me-2"></i>
-							natureayurvedjournal@gmail.com</li>
-						<li><i class="fa fa-globe me-2"></i> natureayurved.com</li>
-						<li><i class="fa fa-barcode me-2"></i> ISSN: 0000-0000</li>
+							ijimjournal1@gmail.com</li>
+						<li><i class="fa fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
 				</div>
 

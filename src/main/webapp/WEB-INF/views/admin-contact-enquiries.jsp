@@ -15,6 +15,16 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+
+<style>
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    body :not(i):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad):not(.fa-solid):not(.fa-brands):not(.fa-regular) {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+</style>
 <style>
 :root {
 	--deep-green: rgb(30, 140, 193);;
@@ -107,6 +117,9 @@ body {
 	border-bottom: 1px solid rgba(251,246,238,0.1);
 	text-align: center;
 	background: #083c23;
+	display: flex;
+	align-items: center;
+	gap: 15px;
 }
 
 .sidebar-header h2 {
@@ -398,6 +411,11 @@ body {
 .sidebar-menu::-webkit-scrollbar-thumb:hover {
 	background: rgba(201, 162, 90, 0.5);
 }
+.sidebar-logo {
+	width: 55px;
+	height: 55px;
+	object-fit: contain;
+}
 </style>
 </head>
 
@@ -412,6 +430,8 @@ body {
 
 	<div class="sidebar" id="sidebar">
 		<div class="sidebar-header">
+		<img src="${pageContext.request.contextPath}/images/IJIMlogo.png"
+				alt="IJIM Logo" class="sidebar-logo">
 			<h2>IJIM</h2>
 		</div>
 		<nav class="sidebar-menu">
@@ -428,12 +448,7 @@ body {
 				<%-- <li><a href="${pageContext.request.contextPath}/admin/conferences">
 					<i class="fas fa-calendar"></i> <span>Conferences</span>
 				</a></li> --%>
-				<li><a href="${pageContext.request.contextPath}/editorial-board" target="_blank">
-					<i class="fas fa-users"></i> <span>Editorial Board</span>
-				</a></li>
-				<li><a href="${pageContext.request.contextPath}/about" target="_blank">
-					<i class="fas fa-info-circle"></i> <span>About & Contact Us</span>
-				</a></li>
+				
 				<li><a href="${pageContext.request.contextPath}/admin/author-login-details">
 				<i class="fas fa-user-lock"></i> <span>Author Login Details</span>
 			</a></li>
@@ -449,7 +464,7 @@ body {
 				<li><a href="${pageContext.request.contextPath}/admin/manage-template"> 
 					<i class="fas fa-edit"></i> <span>PAGE EDIT</span>
 				</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/gallery"> 
+				<li><a href="${pageContext.request.contextPath}/admin/gallery" target="_blank"> 
 					<i class="fas fa-edit"></i> <span>Gallery</span>
 				</a></li>
 				
