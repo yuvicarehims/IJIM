@@ -797,7 +797,7 @@ translateX
 }
 
 /* ================= ARTICLES ================= */
-.current-issue-articles {
+/* .current-issue-articles {
 	flex: 1;
 	color: white;
 	max-height: 500px;
@@ -805,16 +805,37 @@ translateX
     /* Scrollbar */
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
-}
+} */
 
 /* Heading */
-.current-issue-heading {
+/* .current-issue-heading {
 	text-align: center;
 	font-family: Georgia, "Times New Roman", serif;
 	font-size: 32px;
 	font-weight: normal;
 	margin: -15px 0 35px;
 	color: white;
+} */
+
+.current-issue-articles {
+    flex: 1;
+    height: 500px;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 15px 10px;
+}
+
+.current-issue-heading {
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    font-weight: normal;
+    margin: 0 0 25px 0;
+    padding: 5px 0;
+    color: white;
+    line-height: 1.4;
 }
 
 /* Article */
@@ -1214,9 +1235,8 @@ translateX
 						<!-- Address -->
 						<div
 							style="font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
-							<i class="fas fa-map-marker-alt me-2"></i> 8A, Wandhare Child
-							Care Hospital,<br> Dubey Nagar, Hudkeshwar Road,<br>
-							Nagpur, Maharashtra 440034, India
+							<i class="fas fa-map-marker-alt me-2"></i> Sakkardara, Umred Road, Nagpur, Maharashtra-440009, India.<br>
+							
 						</div>
 
 						<!-- Phone -->

@@ -1280,12 +1280,10 @@ body {
 
 							<!-- Address -->
 							<div
-								style="font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
-								<i class="fas fa-map-marker-alt me-2"></i> 8A, Wandhare Child
-								Care Hospital,<br> Dubey Nagar, Hudkeshwar Road,<br>
-								Nagpur, Maharashtra 440034, India
-							</div>
-
+							style="font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
+							<i class="fas fa-map-marker-alt me-2"></i> Sakkardara, Umred Road, Nagpur, Maharashtra-440009, India.<br>
+							
+						</div>
 							<!-- Phone -->
 							<div style="font-size: 13px; margin-bottom: 5px;">
 								<i class="fas fa-phone me-2"></i> (+91) 8767571175
