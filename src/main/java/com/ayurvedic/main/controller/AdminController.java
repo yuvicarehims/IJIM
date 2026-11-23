@@ -97,20 +97,19 @@ public class AdminController {
 	private com.ayurvedic.main.service.UserService userService;
 	@Autowired
 	private com.ayurvedic.main.repository.ContactEnquiryRepository contactEnquiryRepository;
-	
+
 	@Autowired
 	private PageContentService pageContentService;
-	
+
 	@Autowired
 	private ContentTemplateService contentTemplateService;
-	
+
 	@Autowired
 	private TemplateDataService templateDataService;
-	
-	
+
 	@Autowired
-	private  PdfDocumentService pdfDocumentService;
-	
+	private PdfDocumentService pdfDocumentService;
+
 	@Autowired
 	private urlService urlService;
 
@@ -219,7 +218,7 @@ public class AdminController {
 
 	// ✅ ADDED PROFESSIONAL PDF TEXT EXTRACTION METHOD
 	private String extractPdfContent(File file) {
-		try (PDDocument document = Loader.loadPDF(file)) {  //PDDocument.load(file)
+		try (PDDocument document = Loader.loadPDF(file)) { // PDDocument.load(file)
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			String content = pdfStripper.getText(document).trim();
 			return content.isEmpty() ? "Empty PDF document" : content;
@@ -241,17 +240,14 @@ public class AdminController {
 		List<Submission> submissions = submissionService.getAllSubmissions();
 
 		long totalSubmissions = submissions.size();
-		long pendingSubmissions = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.SUBMITTED)
+		long pendingSubmissions = submissions.stream().filter(s -> s.getStatus() == Submission.Status.SUBMITTED)
 				.count();
-		long reviewedSubmissions = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.REVIEWED)
+		long reviewedSubmissions = submissions.stream().filter(s -> s.getStatus() == Submission.Status.REVIEWED)
 				.count();
 
 		// ✅ FIX: Published count should come from PublishedArticleRepository, not
 		// submissions
-		long publishedSubmissions = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.PUBLISHED)
+		long publishedSubmissions = submissions.stream().filter(s -> s.getStatus() == Submission.Status.PUBLISHED)
 				.count();
 		model.addAttribute("submissions", submissions);
 		model.addAttribute("totalSubmissions", totalSubmissions);
@@ -271,21 +267,17 @@ public class AdminController {
 
 		long reviewCount = submissions.stream()
 				.filter(s -> s.getStatus() == Submission.Status.UNDER_REVIEW
-						|| s.getStatus() == Submission.Status.SUBMITTED
-						|| s.getStatus() == Submission.Status.REVIEWED)
+						|| s.getStatus() == Submission.Status.SUBMITTED || s.getStatus() == Submission.Status.REVIEWED)
 				.count();
 		long editingCount = submissions.stream().filter(s -> s.getStatus() == Submission.Status.UNDER_EDITING).count();
-		long acceptedCount = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.UNDER_ACCEPTED
-						|| s.getStatus() == Submission.Status.APPROVED)
+		long acceptedCount = submissions.stream().filter(
+				s -> s.getStatus() == Submission.Status.UNDER_ACCEPTED || s.getStatus() == Submission.Status.APPROVED)
 				.count();
-		long publishedCount = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.UNDER_PUBLISHED
-						|| s.getStatus() == Submission.Status.PUBLISHED)
+		long publishedCount = submissions.stream().filter(
+				s -> s.getStatus() == Submission.Status.UNDER_PUBLISHED || s.getStatus() == Submission.Status.PUBLISHED)
 				.count();
-		long rejectedCount = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.UNDER_REJECTED
-						|| s.getStatus() == Submission.Status.REJECTED)
+		long rejectedCount = submissions.stream().filter(
+				s -> s.getStatus() == Submission.Status.UNDER_REJECTED || s.getStatus() == Submission.Status.REJECTED)
 				.count();
 
 		model.addAttribute("submissions", submissions);
@@ -308,21 +300,17 @@ public class AdminController {
 
 		long reviewCount = submissions.stream()
 				.filter(s -> s.getStatus() == Submission.Status.UNDER_REVIEW
-						|| s.getStatus() == Submission.Status.SUBMITTED
-						|| s.getStatus() == Submission.Status.REVIEWED)
+						|| s.getStatus() == Submission.Status.SUBMITTED || s.getStatus() == Submission.Status.REVIEWED)
 				.count();
 		long editingCount = submissions.stream().filter(s -> s.getStatus() == Submission.Status.UNDER_EDITING).count();
-		long acceptedCount = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.UNDER_ACCEPTED
-						|| s.getStatus() == Submission.Status.APPROVED)
+		long acceptedCount = submissions.stream().filter(
+				s -> s.getStatus() == Submission.Status.UNDER_ACCEPTED || s.getStatus() == Submission.Status.APPROVED)
 				.count();
-		long publishedCount = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.UNDER_PUBLISHED
-						|| s.getStatus() == Submission.Status.PUBLISHED)
+		long publishedCount = submissions.stream().filter(
+				s -> s.getStatus() == Submission.Status.UNDER_PUBLISHED || s.getStatus() == Submission.Status.PUBLISHED)
 				.count();
-		long rejectedCount = submissions.stream()
-				.filter(s -> s.getStatus() == Submission.Status.UNDER_REJECTED
-						|| s.getStatus() == Submission.Status.REJECTED)
+		long rejectedCount = submissions.stream().filter(
+				s -> s.getStatus() == Submission.Status.UNDER_REJECTED || s.getStatus() == Submission.Status.REJECTED)
 				.count();
 
 		model.addAttribute("submissions", submissions);
@@ -367,10 +355,8 @@ public class AdminController {
 
 		InputStream inputStream = new FileInputStream(file);
 
-		return ResponseEntity.ok()
-				.contentType(MediaType.parseMediaType(contentType))
-				.header(HttpHeaders.CONTENT_DISPOSITION,
-						"attachment; filename=\"" + downloadFileName + "\"")
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + downloadFileName + "\"")
 				.body(new InputStreamResource(inputStream));
 	}
 
@@ -410,10 +396,8 @@ public class AdminController {
 	// 🔹 UPDATE & PUBLISH WITH PDF CREATION
 	// ===========================
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateAndPublishSubmission(@RequestParam Long id,
-			@RequestParam String title,
-			@RequestParam String content,
-			Authentication authentication) {
+	public String updateAndPublishSubmission(@RequestParam Long id, @RequestParam String title,
+			@RequestParam String content, Authentication authentication) {
 
 		String editedBy = authentication != null ? authentication.getName() : "Admin";
 
@@ -465,8 +449,8 @@ public class AdminController {
 		String originalDir = originalFile.getParent();
 
 		// Create PDF filename
-		String pdfFileName = "AYUSCRIPT_" + System.currentTimeMillis() + "_" +
-				title.replaceAll("[^a-zA-Z0-9.-]", "_") + ".pdf";
+		String pdfFileName = "AYUSCRIPT_" + System.currentTimeMillis() + "_" + title.replaceAll("[^a-zA-Z0-9.-]", "_")
+				+ ".pdf";
 		String pdfFilePath = originalDir + File.separator + pdfFileName;
 
 		// Create PDF document
@@ -518,8 +502,8 @@ public class AdminController {
 
 			Font footerFont = new Font(Font.HELVETICA, 9, Font.ITALIC);
 			Paragraph footerPara = new Paragraph(
-					"Published in AYUSCRIPT - International Journal for Empirical Research in Ayurveda\n" +
-							"ISSN: 2583-3677 | www.ayuscript.com");
+					"Published in AYUSCRIPT - International Journal for Empirical Research in Ayurveda\n"
+							+ "ISSN: 2583-3677 | www.ayuscript.com");
 			footerPara.setAlignment(Paragraph.ALIGN_CENTER);
 			footerPara.setSpacingBefore(20);
 			document.add(footerPara);
@@ -542,14 +526,10 @@ public class AdminController {
 		}
 
 		// Remove HTML tags but keep the text content
-		String cleanText = htmlContent
-				.replaceAll("<[^>]*>", "") // Remove all HTML tags
+		String cleanText = htmlContent.replaceAll("<[^>]*>", "") // Remove all HTML tags
 				.replaceAll("&nbsp;", " ") // Replace HTML spaces
 				.replaceAll("&amp;", "&") // Replace HTML entities
-				.replaceAll("&lt;", "<")
-				.replaceAll("&gt;", ">")
-				.replaceAll("&quot;", "\"")
-				.replaceAll("&#39;", "'")
+				.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", "\"").replaceAll("&#39;", "'")
 				.replaceAll("\\s+", " ") // Normalize multiple spaces
 				.trim();
 
@@ -564,11 +544,8 @@ public class AdminController {
 	// 🔹 PUBLISH TO CURRENT ISSUE - UPDATED WITH PDF FIX
 	// ===========================
 	@RequestMapping(value = "/publish", method = RequestMethod.POST)
-	public String publish(@RequestParam Long submissionId,
-			@RequestParam String title,
-			@RequestParam String htmlContent,
-			@RequestParam String abstractText,
-			Model model) {
+	public String publish(@RequestParam Long submissionId, @RequestParam String title, @RequestParam String htmlContent,
+			@RequestParam String abstractText, Model model) {
 
 		try {
 			// Get the submission
@@ -611,12 +588,9 @@ public class AdminController {
 	// 🔹 SEND EMAIL TO AUTHOR WITH ATTACHMENTS - UPDATED
 	// ===========================
 	@RequestMapping(value = "/send-mail", method = RequestMethod.POST)
-	public String sendEmailToAuthor(@RequestParam Long id,
-			@RequestParam String to,
-			@RequestParam String subject,
+	public String sendEmailToAuthor(@RequestParam Long id, @RequestParam String to, @RequestParam String subject,
 			@RequestParam String message,
-			@RequestParam(value = "attachments", required = false) List<MultipartFile> attachments,
-			Model model) {
+			@RequestParam(value = "attachments", required = false) List<MultipartFile> attachments, Model model) {
 
 		try {
 			Submission submission = submissionService.getSubmissionById(id)
@@ -638,13 +612,8 @@ public class AdminController {
 			}
 
 			// Send email with attachments
-			emailService.sendEmailToAuthorWithAttachment(
-					to,
-					submission.getAuthor().getFullName(),
-					subject,
-					message,
-					submission.getTitle(),
-					tempFiles);
+			emailService.sendEmailToAuthorWithAttachment(to, submission.getAuthor().getFullName(), subject, message,
+					submission.getTitle(), tempFiles);
 
 			// Clean up temporary files
 			for (File tempFile : tempFiles) {
@@ -664,10 +633,8 @@ public class AdminController {
 	// UPDATED PAPER REVIEW GET MAPPING (IMPORTANT)
 	// ===================================================
 	@GetMapping("/paper-review")
-	public String paperReview(
-			@RequestParam(required = false) Long submissionId,
-			@RequestParam(required = false) Long authorId,
-			Model model) {
+	public String paperReview(@RequestParam(required = false) Long submissionId,
+			@RequestParam(required = false) Long authorId, Model model) {
 
 		// ✅ Load from master tables
 		List<ArticleType> articleTypes = atRepo.findAll();
@@ -790,25 +757,18 @@ public class AdminController {
 	}
 
 	@PostMapping("/paper-review/save")
-	public String savePaperReview(
-			@RequestParam(required = false) Long submissionId,
+	public String savePaperReview(@RequestParam(required = false) Long submissionId,
 
-			@RequestParam String articleId,
-			@RequestParam String articleType,
-			@RequestParam String volume,
-			@RequestParam String issue,
-			@RequestParam String title,
-			@RequestParam String citation,
+			@RequestParam String articleId, @RequestParam String articleType, @RequestParam String volume,
+			@RequestParam String issue, @RequestParam String title, @RequestParam String citation,
 			@RequestParam("authorNames") List<String> authorNames,
 			@RequestParam("authorDetails") List<String> authorDetails,
 
-			@RequestParam String abstractText,
-			@RequestParam(required = false) String abstractKeywords,
+			@RequestParam String abstractText, @RequestParam(required = false) String abstractKeywords,
 			@RequestParam String fullArticle,
 
 			@RequestParam(required = false) MultipartFile referencePdf,
-			@RequestParam(required = false) String numberOfPages,
-			@RequestParam(required = false) String references,
+			@RequestParam(required = false) String numberOfPages, @RequestParam(required = false) String references,
 
 			@RequestParam(required = false) String publicationDate,
 			@RequestParam(required = false) String acceptanceDate,
@@ -934,29 +894,27 @@ public class AdminController {
 
 	@GetMapping("/dropdown/add")
 	@ResponseBody
-	public String addDropdown(
-			@RequestParam String type,
-			@RequestParam String value) {
+	public String addDropdown(@RequestParam String type, @RequestParam String value) {
 
 		switch (type) {
-			case "articleTypes":
-				ArticleType at = new ArticleType();
-				at.setName(value);
-				atRepo.save(at);
+		case "articleTypes":
+			ArticleType at = new ArticleType();
+			at.setName(value);
+			atRepo.save(at);
 
-				break;
+			break;
 
-			case "volumes":
-				Volume v = new Volume();
-				v.setName(value);
-				volRepo.save(v);
-				break;
+		case "volumes":
+			Volume v = new Volume();
+			v.setName(value);
+			volRepo.save(v);
+			break;
 
-			case "issues":
-				Issue i = new Issue();
-				i.setName(value);
-				issueRepo.save(i);
-				break;
+		case "issues":
+			Issue i = new Issue();
+			i.setName(value);
+			issueRepo.save(i);
+			break;
 		}
 
 		return "OK";
@@ -965,42 +923,40 @@ public class AdminController {
 	// ✅ NEW: Update existing dropdown value
 	@PostMapping("/dropdown/update")
 	@ResponseBody
-	public String updateDropdown(
-			@RequestParam String type,
-			@RequestParam String oldValue,
+	public String updateDropdown(@RequestParam String type, @RequestParam String oldValue,
 			@RequestParam String newValue) {
 
 		try {
 			switch (type) {
-				case "articleTypes":
-					ArticleType at = atRepo.findByName(oldValue);
-					if (at != null) {
-						at.setName(newValue);
-						atRepo.save(at);
-						// Update all submissions with this article type
-						submissionRepository.updateArticleType(oldValue, newValue);
-					}
-					break;
+			case "articleTypes":
+				ArticleType at = atRepo.findByName(oldValue);
+				if (at != null) {
+					at.setName(newValue);
+					atRepo.save(at);
+					// Update all submissions with this article type
+					submissionRepository.updateArticleType(oldValue, newValue);
+				}
+				break;
 
-				case "volumes":
-					Volume v = volRepo.findByName(oldValue);
-					if (v != null) {
-						v.setName(newValue);
-						volRepo.save(v);
-						// Update all submissions with this volume
-						submissionRepository.updateVolume(oldValue, newValue);
-					}
-					break;
+			case "volumes":
+				Volume v = volRepo.findByName(oldValue);
+				if (v != null) {
+					v.setName(newValue);
+					volRepo.save(v);
+					// Update all submissions with this volume
+					submissionRepository.updateVolume(oldValue, newValue);
+				}
+				break;
 
-				case "issues":
-					Issue i = issueRepo.findByName(oldValue);
-					if (i != null) {
-						i.setName(newValue);
-						issueRepo.save(i);
-						// Update all submissions with this issue
-						submissionRepository.updateIssue(oldValue, newValue);
-					}
-					break;
+			case "issues":
+				Issue i = issueRepo.findByName(oldValue);
+				if (i != null) {
+					i.setName(newValue);
+					issueRepo.save(i);
+					// Update all submissions with this issue
+					submissionRepository.updateIssue(oldValue, newValue);
+				}
+				break;
 			}
 
 			return "OK";
@@ -1014,47 +970,45 @@ public class AdminController {
 	// ✅ NEW: Delete dropdown value
 	@PostMapping("/dropdown/delete")
 	@ResponseBody
-	public String deleteDropdown(
-			@RequestParam String type,
-			@RequestParam String value) {
+	public String deleteDropdown(@RequestParam String type, @RequestParam String value) {
 
 		try {
 			switch (type) {
-				case "articleTypes":
-					ArticleType at = atRepo.findByName(value);
-					if (at != null) {
-						// Check if any submissions are using this article type
-						long count = submissionRepository.countByArticleType(value);
-						if (count > 0) {
-							return "ERROR: Cannot delete. This article type is used by " + count + " submission(s).";
-						}
-						atRepo.delete(at);
+			case "articleTypes":
+				ArticleType at = atRepo.findByName(value);
+				if (at != null) {
+					// Check if any submissions are using this article type
+					long count = submissionRepository.countByArticleType(value);
+					if (count > 0) {
+						return "ERROR: Cannot delete. This article type is used by " + count + " submission(s).";
 					}
-					break;
+					atRepo.delete(at);
+				}
+				break;
 
-				case "volumes":
-					Volume v = volRepo.findByName(value);
-					if (v != null) {
-						// Check if any submissions are using this volume
-						long count = submissionRepository.countByVolume(value);
-						if (count > 0) {
-							return "ERROR: Cannot delete. This volume is used by " + count + " submission(s).";
-						}
-						volRepo.delete(v);
+			case "volumes":
+				Volume v = volRepo.findByName(value);
+				if (v != null) {
+					// Check if any submissions are using this volume
+					long count = submissionRepository.countByVolume(value);
+					if (count > 0) {
+						return "ERROR: Cannot delete. This volume is used by " + count + " submission(s).";
 					}
-					break;
+					volRepo.delete(v);
+				}
+				break;
 
-				case "issues":
-					Issue i = issueRepo.findByName(value);
-					if (i != null) {
-						// Check if any submissions are using this issue
-						long count = submissionRepository.countByIssue(value);
-						if (count > 0) {
-							return "ERROR: Cannot delete. This issue is used by " + count + " submission(s).";
-						}
-						issueRepo.delete(i);
+			case "issues":
+				Issue i = issueRepo.findByName(value);
+				if (i != null) {
+					// Check if any submissions are using this issue
+					long count = submissionRepository.countByIssue(value);
+					if (count > 0) {
+						return "ERROR: Cannot delete. This issue is used by " + count + " submission(s).";
 					}
-					break;
+					issueRepo.delete(i);
+				}
+				break;
 			}
 
 			return "OK";
@@ -1088,8 +1042,7 @@ public class AdminController {
 	// ✅ NEW: Update submission status via AJAX
 	@PostMapping("/update-status")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> updateSubmissionStatus(
-			@RequestParam Long submissionId,
+	public ResponseEntity<Map<String, Object>> updateSubmissionStatus(@RequestParam Long submissionId,
 			@RequestParam String status) {
 		Map<String, Object> response = new HashMap<>();
 		try {
@@ -1342,14 +1295,12 @@ public class AdminController {
 	}
 
 	@PostMapping("/manage-content/update")
-	public String updatePageContent(
-			@RequestParam Long id,
-			@RequestParam String content,
-			Model model) {
+	public String updatePageContent(@RequestParam Long id, @RequestParam String content, Model model) {
 		try {
 			PageContent updated = pageContentService.updateContent(id, content);
 			if (updated != null) {
-				return "redirect:/admin/manage-content?page=" + updated.getPageName() + "&message=Content+updated+successfully";
+				return "redirect:/admin/manage-content?page=" + updated.getPageName()
+						+ "&message=Content+updated+successfully";
 			}
 			return "redirect:/admin/manage-content?error=Content+not+found";
 		} catch (Exception e) {
@@ -1360,8 +1311,7 @@ public class AdminController {
 
 	@PostMapping("/manage-content/update-ajax")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> updatePageContentAjax(
-			@RequestParam Long id,
+	public ResponseEntity<Map<String, Object>> updatePageContentAjax(@RequestParam Long id,
 			@RequestParam String content) {
 		Map<String, Object> response = new HashMap<>();
 		try {
@@ -1396,8 +1346,7 @@ public class AdminController {
 
 	@PostMapping("/manage-content/upload-image")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> uploadImage(
-			@RequestParam Long id,
+	public ResponseEntity<Map<String, Object>> uploadImage(@RequestParam Long id,
 			@RequestParam("image") MultipartFile imageFile) {
 		Map<String, Object> response = new HashMap<>();
 		try {
@@ -1417,7 +1366,7 @@ public class AdminController {
 			}
 
 			// Create upload directory if it doesn't exist
-			String uploadDir = "src/main/webapp/uploads/";
+			String uploadDir = "src/main/webapps_ijim/uploads/";
 			File uploadDirFile = new File(uploadDir);
 			if (!uploadDirFile.exists()) {
 				uploadDirFile.mkdirs();
@@ -1425,8 +1374,9 @@ public class AdminController {
 
 			// Generate unique filename
 			String originalFilename = imageFile.getOriginalFilename();
-			String fileExtension = originalFilename != null ? 
-				originalFilename.substring(originalFilename.lastIndexOf(".")) : ".jpg";
+			String fileExtension = originalFilename != null
+					? originalFilename.substring(originalFilename.lastIndexOf("."))
+					: ".jpg";
 			String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
 			String filePath = uploadDir + uniqueFilename;
 
@@ -1441,7 +1391,7 @@ public class AdminController {
 				PageContent content = contentOpt.get();
 				content.setImagePath(imagePath);
 				pageContentService.saveContent(content);
-				
+
 				response.put("success", true);
 				response.put("message", "Image uploaded successfully");
 				response.put("imagePath", imagePath);
@@ -1465,50 +1415,46 @@ public class AdminController {
 			return ResponseEntity.internalServerError().body(response);
 		}
 	}
-	
-	@PostMapping("/saveAboutContent")
-	public String saveAboutContent(
-	        @RequestParam("aboutContent") String aboutContent,@RequestParam("contentId") Long contentId) {
 
-	    // DB save
+	@PostMapping("/saveAboutContent")
+	public String saveAboutContent(@RequestParam("aboutContent") String aboutContent,
+			@RequestParam("contentId") Long contentId) {
+
+		// DB save
 		PageContent updated = pageContentService.updateContent(contentId, aboutContent);
 
-	    // page reload ke liye redirect
-	    return "redirect:/about";
+		// page reload ke liye redirect
+		return "redirect:/about";
 	}
-	
+
 	@GetMapping("/manage-template")
-	public String manageTemplateContent(
-	        @RequestParam(required = false, defaultValue = "home") String page,
-	        Model model) {
+	public String manageTemplateContent(@RequestParam(required = false, defaultValue = "home") String page,
+			Model model) {
 
-	    try {
-	        List<PageContent> contents =
-	                pageContentService.getPageContentsOrdered(page);
+		try {
+			List<PageContent> contents = pageContentService.getPageContentsOrdered(page);
 
-	        List<ContentTemplate> templatelist =
-	                contentTemplateService.getTemplateContent(page);
+			List<ContentTemplate> templatelist = contentTemplateService.getTemplateContent(page);
 
-	        model.addAttribute("contents", contents);
-	        model.addAttribute("selectedPage", page);
-	        model.addAttribute("totalContents", contents.size());
-	        model.addAttribute("templatelist", templatelist);
+			model.addAttribute("contents", contents);
+			model.addAttribute("selectedPage", page);
+			model.addAttribute("totalContents", contents.size());
+			model.addAttribute("templatelist", templatelist);
 
-	        return "admin-template-content";
+			return "admin-template-content";
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 
-	        model.addAttribute("error", "Failed to load page content");
-	        model.addAttribute("contents", new ArrayList<>());
-	        model.addAttribute("selectedPage", page);
-	        model.addAttribute("templatelist", new ArrayList<>());
+			model.addAttribute("error", "Failed to load page content");
+			model.addAttribute("contents", new ArrayList<>());
+			model.addAttribute("selectedPage", page);
+			model.addAttribute("templatelist", new ArrayList<>());
 
-	        return "admin-template-content";
-	    }
+			return "admin-template-content";
+		}
 	}
-	 
-	
+
 	/*
 	 * @GetMapping("/manage-template") public String manageTemplateContent(
 	 * 
@@ -1537,78 +1483,69 @@ public class AdminController {
 	 * return "admin-template-content"; } }
 	 */
 
-	
 	@PostMapping("/savetemplatecontent")
 	public String saveTemplateContent(@ModelAttribute TemplateData temp) {
-		 // DB save
-		TemplateData templateData=new TemplateData();
-		 boolean check=templateDataService.templateidPresent(temp.getTemplate());
-		 if(check) {
-			 templateData=templateDataService.updateContent(temp);
-		 }else {
-		     templateData=templateDataService.saveContent(temp);
-		 }
-		 return "redirect:/admin/manage-template";
+		// DB save
+		TemplateData templateData = new TemplateData();
+		boolean check = templateDataService.templateidPresent(temp.getTemplate());
+		if (check) {
+			templateData = templateDataService.updateContent(temp);
+		} else {
+			templateData = templateDataService.saveContent(temp);
+		}
+		return "redirect:/admin/manage-template";
 	}
-	
+
 	@GetMapping("/getTemplateContent")
 	@ResponseBody
-	public String getTemplateContent(@RequestParam Long id){
+	public String getTemplateContent(@RequestParam Long id) {
 
-		Optional<TemplateData> template =templateDataService.gettempdata(id);
+		Optional<TemplateData> template = templateDataService.gettempdata(id);
 
-	    return template.get().getContentArea();
+		return template.get().getContentArea();
 	}
-	
-	
+
 	/*
 	 * @RequestMapping(value = "/gallery", method = RequestMethod.GET) public String
 	 * openGallerry(Model model) { return "gallery_page"; }
 	 */
 	@PostMapping("/submit")
-	public String submitArticle(
-	        @RequestParam("document") MultipartFile file,
-	        Model model) {
+	public String submitArticle(@RequestParam("document") MultipartFile file, Model model) {
 
-	    try {
+		try {
 
-			
 			/*
 			 * String uploadDir = System.getProperty("user.dir") + File.separator + "src" +
 			 * File.separator + "main" + File.separator + "webapp" + File.separator +
 			 * "uploads";
 			 */
-			 
-	        
-	        String uploadDir = "/opt/tomcat10/webapps/ijim/galleryimage/";
 
-	        File dir = new File(uploadDir);
+			String uploadDir = "/opt/tomcat10/webapps_ijim/ijim/galleryimage/";
 
-	        if (!dir.exists()) {
-	            dir.mkdirs();
-	        }
+			File dir = new File(uploadDir);
 
-	        String fileName =
-	                System.currentTimeMillis()
-	                + "_"
-	                + file.getOriginalFilename().replace(" ", "_");
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
 
-	        Path path = Paths.get(uploadDir, fileName);
+			String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename().replace(" ", "_");
 
-	        System.out.println(path);
+			Path path = Paths.get(uploadDir, fileName);
 
-	        Files.write(path, file.getBytes());
+			System.out.println(path);
 
-	        System.out.println("File uploaded successfully");
+			Files.write(path, file.getBytes());
 
-	    } catch (Exception e) {
+			System.out.println("File uploaded successfully");
 
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
 
-	    return "redirect:/admin/gallery";
+			e.printStackTrace();
+		}
+
+		return "redirect:/admin/gallery";
 	}
-	
+
 	@GetMapping("/gallery")
 	public String gallery(Model model) {
 
@@ -1617,101 +1554,146 @@ public class AdminController {
 		 * File.separator + "main" + File.separator + "webapp" + File.separator +
 		 * "uploads";
 		 */
-	    
-	    String uploadDir = "/opt/tomcat10/webapps/ijim/galleryimage";
 
-	    File folder = new File(uploadDir);
+		String uploadDir = "/opt/tomcat10/webapps_ijim/ijim/galleryimage";
 
-	    File[] files = folder.listFiles();
+		File folder = new File(uploadDir);
 
-	    List<String> imageList = new ArrayList<>();
-	    
-	    
+		File[] files = folder.listFiles();
 
-	    if(files != null) {
+		List<String> imageList = new ArrayList<>();
 
-	        for(File file : files) {
+		if (files != null) {
 
-	            imageList.add(file.getName());
-	        }
-	    }
-	    
-	    Optional<UrlData> urlData = urlService.getUrlData();
+			for (File file : files) {
 
-	    if (urlData.isPresent()) {
-	        String url = urlData.get().getUrl();
-	        model.addAttribute("url", url);
-	    }
+				imageList.add(file.getName());
+			}
+		}
 
-	    model.addAttribute("images", imageList);
+		Optional<UrlData> urlData = urlService.getUrlData();
 
-	    return "gallery_page";
+		if (urlData.isPresent()) {
+			String url = urlData.get().getUrl();
+			model.addAttribute("url", url);
+		}
+
+		model.addAttribute("images", imageList);
+
+		return "gallery_page";
 	}
-	
-	 // PDF list table mein show karne ke liye
-    @GetMapping("/pdfs")
-    public String getAllPdfs(Model model) {
 
-        List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+	// PDF list table mein show karne ke liye
+	/*
+	 * @GetMapping("/pdfs") public String getAllPdfs(@RequestParam(required = false)
+	 * String year,
+	 * 
+	 * @RequestParam(required = false) String volume,
+	 * 
+	 * @RequestParam(required = false) String issue,Model model) {
+	 * 
+	 * 
+	 * List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+	 * 
+	 * model.addAttribute("pdfs", pdfList);
+	 * 
+	 * System.out.println("GET ALL PDF METHOD CALLED");
+	 * 
+	 * 
+	 * 
+	 * LocalDate now = LocalDate.now();
+	 * 
+	 * int currentYear = now.getYear(); int startYear = 2020;
+	 * 
+	 * if (year == null) { year = String.valueOf(currentYear); }
+	 * 
+	 * if (volume == null) { volume = String.valueOf(Integer.parseInt(year) -
+	 * startYear + 1); }
+	 * 
+	 * // Year and Volume model.addAttribute("currentYear", currentYear);
+	 * model.addAttribute("selectedYear", year);
+	 * model.addAttribute("selectedVolume", volume);
+	 * 
+	 * // Fetch issues based on volume List<String> issues =
+	 * pdfDocumentService.getIssuesByVolume(volume);
+	 * 
+	 * model.addAttribute("issues", issues); model.addAttribute("selectedIssue",
+	 * issue);
+	 * 
+	 * // Fetch PDFs List<PdfDocument> pdfList;
+	 * 
+	 * if (issue != null) { pdfList =
+	 * pdfDocumentService.getPdfsByVolumeAndIssue(volume, issue); } else { pdfList =
+	 * pdfDocumentService.getPdfsByVolume(volume); }
+	 * 
+	 * System.out.println("Current Year: " + currentYear);
+	 * System.out.println("Selected Year: " + year);
+	 * 
+	 * model.addAttribute("selectedYear", year);
+	 * 
+	 * model.addAttribute("pageContent", pdfList);
+	 * 
+	 * return "pdf-list"; }
+	 */
 
-        model.addAttribute("pdfs", pdfList);
+	@GetMapping("/pdfs")
+	public String getAllPdfs(Model model) {
 
-        return "pdf-list";
-    }
+		
+		  List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+		  
+		  model.addAttribute("pdfs", pdfList);
+		 
+		System.out.println("GET ALL PDF METHOD CALLED");
+        model.addAttribute("pageContent", pdfList);
 
-    // PDF open karne ke liye
-    @GetMapping("/pdfs/open/{id}")
-    public ResponseEntity<byte[]> openPdf(@PathVariable Long id) {
+		return "pdf-list";
+	}
 
-        try {
-            PdfDocument pdf = pdfDocumentService.getPdfById(id);
+	// PDF open karne ke liye
+	@GetMapping("/pdfs/open/{id}")
+	public ResponseEntity<byte[]> openPdf(@PathVariable Long id) {
 
-            //Path path = Paths.get(pdf.getFilePath());
-            
-            //String uploadDir = "/opt/tomcat10/webapps/ijim/pdfdocument";
-            
-            String uploadDir = "C:\\Users\\user\\OneDrive\\Pictures\\ijim\\pdfdocument";
+		try {
+			PdfDocument pdf = pdfDocumentService.getPdfById(id);
 
-            Path path = Paths.get(uploadDir, pdf.getName());
-            
-            System.out.println("PDF NAME = " + pdf.getName());
-            System.out.println("PDF PATH = " + path);
-            System.out.println("FILE EXISTS = " + Files.exists(path));
-            
+			// Path path = Paths.get(pdf.getFilePath());
 
-            if (!Files.exists(path) || !Files.isRegularFile(path)) {
-                return ResponseEntity.notFound().build();
-            }
-            
-            byte[] pdfData;
+			// String uploadDir = "/opt/tomcat10/webapps/ijim/pdfdocument";
 
-            try (PDDocument document = Loader.loadPDF(path.toFile())) {
-                PDDocumentInformation info = document.getDocumentInformation();
+			String uploadDir = "C:\\Users\\user\\OneDrive\\Pictures\\ijim\\pdfdocument";
 
-                info.setTitle(pdf.getName());
-                document.setDocumentInformation(info);
+			Path path = Paths.get(uploadDir, pdf.getName());
 
-                java.io.ByteArrayOutputStream output =
-                        new java.io.ByteArrayOutputStream();
+			System.out.println("PDF NAME = " + pdf.getName());
+			System.out.println("PDF PATH = " + path);
+			System.out.println("FILE EXISTS = " + Files.exists(path));
 
-                document.save(output);
-                pdfData = output.toByteArray();
-            }
+			if (!Files.exists(path) || !Files.isRegularFile(path)) {
+				return ResponseEntity.notFound().build();
+			}
 
+			byte[] pdfData;
 
-            
+			try (PDDocument document = Loader.loadPDF(path.toFile())) {
+				PDDocumentInformation info = document.getDocumentInformation();
 
-            return ResponseEntity.ok()
-            		.contentType(MediaType.APPLICATION_PDF)
-                    .header(
-                        HttpHeaders.CONTENT_DISPOSITION,
-                        "inline; filename=\"" + pdf.getName() + "\"; filename*=UTF-8''" + pdf.getName()
-                    )
-                    .header("X-Content-Type-Options", "nosniff")
-                    .body(pdfData);
+				info.setTitle(pdf.getName());
+				document.setDocumentInformation(info);
 
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
+				java.io.ByteArrayOutputStream output = new java.io.ByteArrayOutputStream();
+
+				document.save(output);
+				pdfData = output.toByteArray();
+			}
+
+			return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF)
+					.header(HttpHeaders.CONTENT_DISPOSITION,
+							"inline; filename=\"" + pdf.getName() + "\"; filename*=UTF-8''" + pdf.getName())
+					.header("X-Content-Type-Options", "nosniff").body(pdfData);
+
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }

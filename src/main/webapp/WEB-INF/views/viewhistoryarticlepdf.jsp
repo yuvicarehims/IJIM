@@ -14,29 +14,18 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 	rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-	
+<link
+	href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
+	rel="stylesheet">
+
 
 <style>
-    body,
-    .container,
-    .team-card,
-    .horizontal-card,
-    .section-title,
-    .header-top,
-    .header-title,
-    .heading-responsive,
-    .impact-factor,
-    .header-issn,
-    footer,
-    footer div,
-    footer h6,
-    footer li,
-    footer a,
-    h1, h2, h3, h4, h5, h6,
-    p, a, span, b {
-        font-family: 'Source Sans Pro', sans-serif;
-    }
+body, .container, .team-card, .horizontal-card, .section-title,
+	.header-top, .header-title, .heading-responsive, .impact-factor,
+	.header-issn, footer, footer div, footer h6, footer li, footer a, h1,
+	h2, h3, h4, h5, h6, p, a, span, b {
+	font-family: 'Source Sans Pro', sans-serif;
+}
 </style>
 <style>
 :root {
@@ -613,9 +602,45 @@ keyframes scroll-left { 0% {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %
 {
 transform
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -657,7 +682,43 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 translateX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -697,7 +758,43 @@ translateX
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -718,6 +815,24 @@ translateX
 
 %
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -787,10 +902,10 @@ translateX
 }
 
 .current-issue-articles {
-    flex: 1;
-    height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
+	flex: 1;
+	height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 /* ================= JOURNAL COVER ================= */
 .journal-cover {
@@ -810,10 +925,10 @@ translateX
 	flex: 1;
 	color: white;
 	max-height: 500px;
-    overflow-y: auto;
-    /* Scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
+	overflow-y: auto;
+	/* Scrollbar */
+	scrollbar-width: thin;
+	scrollbar-color: #ccc transparent;
 }
 
 /* Heading */
@@ -1074,8 +1189,8 @@ translateX
 					<li class="nav-item"><a
 						class="nav-link ${page=='contact'?'active':''}"
 						href="${pageContext.request.contextPath}/contact">CONTACT US</a></li>
-						
-				    <li class="nav-item"><a
+
+					<li class="nav-item"><a
 						class="nav-link ${page=='contact'?'active':''}"
 						href="${pageContext.request.contextPath}/pdfs">PDf</a></li>
 
@@ -1090,43 +1205,79 @@ translateX
 			</div>
 		</div>
 	</nav>
+	<div class="row align-items-end justify-content-center"
+		style="margin: 20px auto; max-width: 1100px;">
 
-<div class="table-responsive" style="margin: 20px auto; max-width: 750px;">
-    <table class="table table-bordered table-hover text-center align-middle"
-           style="width: 100%;">
+		<!-- Year -->
+		<div class="col-md-3 mb-3">
+			<label><b>Year</b></label> <select id="yearSelect"
+				class="form-select">
+				<option value="${selectedYear}" selected>${selectedYear}</option>
+			</select>
+		</div>
 
-        <thead class="table-primary">
-            <tr>
-                <th style="width: 80px;">ID</th>
-                <th>PDF Name</th>
-                <th style="width: 150px;">Action</th>
-            </tr>
-        </thead>
+		<!-- Volume -->
+		<div class="col-md-3 mb-3">
+			<label><b>Volume</b></label> <select id="volumeSelect"
+				class="form-select">
+				<option value="${selectedVolume}" selected>Volume
+					${selectedVolume}</option>
+			</select>
+		</div>
 
-        <tbody>
-            <c:forEach var="pdf" items="${pageContent}">
-                <tr>
-                    <td>${pdf.id}</td>
-                    <td>${pdf.name}</td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/admin/pdfs/open/${pdf.id}"
-                           target="_blank"
-                           class="btn btn-primary btn-sm">
-                            Open PDF
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
+		<!-- Issue -->
+		<div class="col-md-3 mb-3">
+			<label><b>Issue</b></label> <select id="issueSelect"
+				class="form-select">
+				<option value="">All Issues</option>
+				<c:forEach var="iss" items="${issues}">
+					<option value="${iss}" ${selectedIssue == iss ? 'selected' : ''}>
+						Issue ${iss}</option>
+				</c:forEach>
+			</select>
+		</div>
 
-    </table>
-</div>
+		<!-- Search PDF Name -->
+		<div class="col-md-3 mb-3">
+			<label><b>Search PDF Name</b></label> <input type="text"
+				id="pdfSearch" class="form-control" placeholder="Enter PDF name">
+		</div>
+
+	</div>
+	<div class="table-responsive"
+		style="margin: 20px auto; max-width: 750px;">
+		<table
+			class="table table-bordered table-hover text-center align-middle"
+			style="width: 100%;" id="pdfTable">
+
+			<thead class="table-primary">
+				<tr>
+					<th style="width: 80px;">ID</th>
+					<th>PDF Name</th>
+					<th style="width: 150px;">Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<c:forEach var="pdf" items="${pageContent}">
+					<tr>
+						<td>${pdf.id}</td>
+						<td>${pdf.name}</td>
+						<td><a
+							href="${pageContext.request.contextPath}/admin/pdfs/open/${pdf.id}"
+							target="_blank" class="btn btn-primary btn-sm"> Open PDF </a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+
+		</table>
+	</div>
 
 
 
 
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background:rgb(17, 23, 9) !important;">
+		style="background: rgb(17, 23, 9) !important;">
 		<div class="container">
 
 			<div class="row gy-4">
@@ -1142,8 +1293,9 @@ translateX
 						<!-- Address -->
 						<div
 							style="font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
-							<i class="fas fa-map-marker-alt me-2"></i> Sakkardara, Umred Road, Nagpur, Maharashtra-440009, India.
-							
+							<i class="fas fa-map-marker-alt me-2"></i> Sakkardara, Umred
+							Road, Nagpur, Maharashtra-440009, India.
+
 						</div>
 
 						<!-- Phone -->
@@ -1211,7 +1363,7 @@ translateX
 							href="mailto:editor@ayuscript.com"
 							class="text-light text-decoration-none">
 								ijimjournal1@gmail.com </a></li>
-						
+
 						<li><i class="fas fa-barcode me-2"></i> ISSN: 2582-7634</li>
 					</ul>
 				</div>
@@ -1222,8 +1374,8 @@ translateX
 			<hr class="border-light mt-4">
 
 			<div class="text-center small">
-				Copyright @2020 International Journal of Indian Medicine | All Rights Reserved  <a href="#"
-					class="text-light text-decoration-none"></a>
+				Copyright @2020 International Journal of Indian Medicine | All
+				Rights Reserved <a href="#" class="text-light text-decoration-none"></a>
 			</div>
 
 		</div>
@@ -1234,3 +1386,41 @@ translateX
 
 </body>
 </html>
+
+<script>
+	document
+			.getElementById("issueSelect")
+			.addEventListener(
+					"change",
+					function() {
+
+						var issue = this.value;
+
+						var year = document.getElementById("yearSelect").value;
+						var volume = document.getElementById("volumeSelect").value;
+
+						window.location.href = "${pageContext.request.contextPath}/pdfs?year="
+								+ year
+								+ "&volume="
+								+ volume
+								+ "&issue="
+								+ encodeURIComponent(issue);
+
+					});
+</script>
+
+
+<
+<script>
+	document.getElementById("pdfSearch").addEventListener("keyup", function() {
+
+		var searchValue = this.value.toLowerCase();
+
+		document.querySelectorAll("#pdfTable tbody tr").forEach(function(row) {
+			var pdfName = row.cells[1].textContent.toLowerCase();
+
+			row.style.display = pdfName.includes(searchValue) ? "" : "none";
+		});
+
+	});
+</script>

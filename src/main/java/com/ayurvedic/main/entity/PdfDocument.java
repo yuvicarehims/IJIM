@@ -16,8 +16,27 @@ public class PdfDocument {
     private String name;
 
     private String filePath;
+    
+    private String volume;
+    private String issue;
 	
 	
+	public String getVolume() {
+		return volume;
+	}
+
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
+
+	public String getIssue() {
+		return issue;
+	}
+
+	public void setIssue(String issue) {
+		this.issue = issue;
+	}
+
 	public Long getId() {
 		return id;
 	}

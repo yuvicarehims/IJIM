@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ayurvedic.main.entity.PdfDocument;
 import com.ayurvedic.main.entity.Submission;
@@ -603,14 +605,67 @@ public class HomeController {
     
     
     @GetMapping("/pdfs")
-    public String getAllPdfs(Model model) {
+    public String getAllPdfs( @RequestParam(required = false) String year,
+            @RequestParam(required = false) String volume,
+            @RequestParam(required = false) String issue,Model model) {
 
-        List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+		/*
+		 * List<PdfDocument> pdfList = pdfDocumentService.getAllPdfs();
+		 * 
+		 * model.addAttribute("pageContent", pdfList);
+		 */
+        
+        
+        LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+        int startYear = 2020;
+
+        // Default Year
+        if (year == null || year.isEmpty()) {
+            year = String.valueOf(currentYear);
+        }
+
+        // Calculate Volume according to Year
+        if (volume == null || volume.isEmpty()) {
+            volume = String.valueOf(
+                    Integer.parseInt(year) - startYear + 1
+            );
+        }
+
+        // Year and Volume
+        model.addAttribute("currentYear", currentYear);
+        model.addAttribute("selectedYear", year);
+        model.addAttribute("selectedVolume", volume);
+        
+        volume="Volume 7";
+        
+        // Fetch Issues according to Volume
+        List<String> issues =
+                pdfDocumentService.getIssuesByVolume(volume);
+
+        model.addAttribute("issues", issues);
+        model.addAttribute("selectedIssue", issue);
+
+        // Fetch PDFs
+        List<PdfDocument> pdfList;
+
+        if (issue != null && !issue.isEmpty()) {
+            pdfList = pdfDocumentService
+                    .getPdfsByVolumeAndIssue(volume, issue);
+        } else {
+            pdfList = pdfDocumentService.getPdfsByVolume(volume);
+        }
 
         model.addAttribute("pageContent", pdfList);
 
+        System.out.println("Current Year: " + currentYear);
+        System.out.println("Selected Year: " + year);
+        System.out.println("Selected Volume: " + volume);
+
         return "viewhistoryarticlepdf";
     }
+    
+} 
 
 
-}
+

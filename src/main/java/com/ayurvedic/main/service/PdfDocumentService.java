@@ -31,6 +31,18 @@ import com.ayurvedic.main.repository.PdfDocumentRepository;
 	                .orElseThrow(() ->
 	                    new RuntimeException("PDF not found with ID: " + id));
 	    }
+	    
+	    public List<String> getIssuesByVolume(String volume) {
+	        return repository.findDistinctIssuesByVolume(volume);
+	    }
+
+	    public List<PdfDocument> getPdfsByVolume(String volume) {
+	        return repository.findByVolume(volume);
+	    }
+
+	    public List<PdfDocument> getPdfsByVolumeAndIssue(String volume, String issue) {
+	        return repository.findByVolumeAndIssue(volume, issue);
+	    }
 	}
 
 
