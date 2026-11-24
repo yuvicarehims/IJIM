@@ -26,7 +26,8 @@
 	rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-	
+	<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
     body,
@@ -716,6 +717,142 @@ body {
     object-position: center top;
     flex-shrink: 0;
 }
+
+
+
+/* ===== COMMON SECTION ===== */
+
+.editor-section {
+    width: 100%;
+    padding: 30px 15px;
+    margin: 0 auto;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+    color: #111111;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+}
+
+/* ===== COMMON CENTERED GRID ===== */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 260px);
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== COMMON PROFILE CARD ===== */
+
+.profile-card {
+    width: 260px;
+    min-height: 340px;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    text-align: center;
+    padding: 15px 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== PROFILE IMAGE AT TOP ===== */
+
+.profile-card img {
+    width: 140px;
+    height: 140px;
+    max-width: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+/* ===== MEMBER NAME ===== */
+
+.profile-card h5 {
+    color: #315d00;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin: 5px 0 12px;
+}
+
+/* ===== DESIGNATION ===== */
+
+.profile-role {
+    font-size: 10px;
+    color: #222222;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 3px;
+}
+
+/* ===== CATEGORY ===== */
+
+.profile-category {
+    font-size: 9px;
+    color: #777777;
+    margin: 0 0 12px;
+}
+
+/* ===== MEMBER DETAILS ===== */
+
+.profile-description {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #555555;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.profile-description .fa-graduation-cap {
+    color: #8bc34a;
+    margin-right: 5px;
+}
+
+/* ===== EMAIL ===== */
+
+.profile-email {
+    font-size: 10px;
+    color: #6683a5;
+    text-decoration: none;
+    display: block;
+    margin-top: auto;
+    padding-top: 10px;
+    overflow-wrap: anywhere;
+}
+
+.profile-email:hover {
+    color: #315d00;
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 600px) {
+    .profile-grid {
+        grid-template-columns: minmax(0, 260px);
+        justify-content: center;
+    }
+
+    .profile-card {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 19px;
+    }
+}
+
 </style>
 
 </head>
@@ -739,7 +876,7 @@ body {
 					<h1 class="heading-responsive">
 
 						International Journal of Indian Medicine <span
-							class="impact-factor"> IIFS Impact Factor: 4.125 </span>
+							class="impact-factor"> IIFS Impact Factor: 6.0</span>
 
 					</h1>
 				</div>
@@ -825,7 +962,7 @@ body {
 
 	<div id="editorial1">${pageContent}</div>
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background: rgb(17, 23, 9) !important;">
+		style="background: #387559 !important;">
 		<div class="container">
 
 			<div class="row gy-4">

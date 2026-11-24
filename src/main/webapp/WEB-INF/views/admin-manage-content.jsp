@@ -56,7 +56,7 @@ body {
     padding: 1.5rem 1rem;
     border-bottom: 1px solid rgba(251, 246, 238, 0.1);
     text-align: center;
-    background: var(--primary-dark);
+    background: #387559;
 }
 
 .sidebar-header h2 {

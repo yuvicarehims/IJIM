@@ -1057,7 +1057,7 @@
     <header class="brand-bar">
         <div class="container-main d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src="${pageContext.request.contextPath}/images/Logo_1-removebg-preview.png" alt="logo" style="height:60px;" class="me-3">
+                <img src="${pageContext.request.contextPath}/images/IJIMlogo.png" alt="logo" style="height:60px;" class="me-3">
                 <div class="d-flex flex-column align-items-start">
                     <div class="logo-text">IJIM</div>
                     <span class="logo-subtitle">International Journal of Ayurved Science & Research</span>
@@ -1065,7 +1065,7 @@
             </div>
             <div class="d-flex align-items-center">
                 <div class="fw-bold text-end me-4 d-none d-md-block" style="color: var(--gold);">
-                    <i class="fas fa-barcode"></i> <strong class="fs-6">ISSN:</strong> 0000-0000
+                    <i class="fas fa-barcode"></i> <strong class="fs-6">IIFS Impact Factor: 6.0 </strong> 
                 </div>
                 <c:if test="${not empty sessionScope.username}">
                     <div class="user-info">
@@ -1456,7 +1456,7 @@
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <div class="footer-logo mb-3">
-								<img src="${pageContext.request.contextPath}/images/Logo_1-removebg-preview.png" alt="logo"
+								<img src="${pageContext.request.contextPath}/images/IJIMlogo.png" alt="logo"
 									class="img-fluid mb-3" style="height:80px; max-width:180px;">
 								<div
 									style="font-size:28px; font-family:Georgia, serif; color:var(--gold); font-weight:700; margin-bottom:10px;">

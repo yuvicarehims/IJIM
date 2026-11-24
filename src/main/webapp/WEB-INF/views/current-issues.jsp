@@ -40,6 +40,9 @@
 </style>
 
 <style>
+
+
+
 :root {
 	--deep-green: rgb(30, 140, 193);
 	--leaf: #2b8a5f;
@@ -776,6 +779,30 @@ footer span {
 .header-title h1 {
 	text-shadow: none !important;
 }
+
+.article-item {
+    position: relative;
+    overflow: visible;
+}
+
+.page-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #eef2ff;
+    color: #3730a3;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    visibility: visible;
+    opacity: 1;
+    z-index: 10;
+    line-height: 1.5;
+    white-space: nowrap;
+    pointer-events: none;
+}
 </style>
 </head>
 
@@ -795,7 +822,7 @@ footer span {
 					<h1 class="heading-responsive">
 
 						International Journal of Indian Medicine <span
-							class="impact-factor"> IIFS Impact Factor: 4.125 </span>
+							class="impact-factor"> IIFS Impact Factor: 6.0</span>
 
 					</h1>
 				</div>
@@ -893,7 +920,10 @@ footer span {
 						<div class="article-list">
 							<c:forEach var="article" items="${publishedArticles}">
 								<div class="article-item">
-									<div class="article-title">${article.title}</div>
+								<span class="page-number"> Pages
+										${article.numberOfPages} </span>
+										
+									<div class="article-title">${article.title} </div>
 									<div class="article-meta">
 										<span class="article-authors"> <i
 											class="fas fa-user me-1"></i> <c:choose>
@@ -990,7 +1020,7 @@ footer span {
 
 	<!-- ===== Footer ===== -->
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background: rgb(17, 23, 9) !important;">
+		style="background: #387559 !important;">
 		<div class="container">
 
 			<div class="row gy-4">

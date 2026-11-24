@@ -915,7 +915,7 @@ body {
 	${pageContent}
 	<!-- ===== Footer ===== -->
 	<footer class="footer"
-		style="background:rgb(17, 23, 9); color: var(--cream); padding: 60px 0 25px;">
+		style="background:#387559; color: var(--cream); padding: 60px 0 25px;">
 		<div class="container">
 
 			<div class="row">

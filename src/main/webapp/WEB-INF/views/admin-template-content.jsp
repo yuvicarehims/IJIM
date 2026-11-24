@@ -56,7 +56,7 @@ body {
     padding: 1.5rem 1rem;
     border-bottom: 1px solid rgba(251, 246, 238, 0.1);
     text-align: center;
-    background: var(--primary-dark);
+    background: #387559;
     display: flex;
 	align-items: center;
 	gap: 15px;
@@ -351,6 +351,17 @@ body {
 	height: 55px;
 	object-fit: contain;
 }
+.sidebar-header {
+    text-align: center;
+    width: 100%;
+}
+
+.sidebar-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
 </style>
 </head>
 <body>
@@ -359,7 +370,7 @@ body {
         <div class="sidebar-header">
         <img src="${pageContext.request.contextPath}/images/IJIMlogo.png"
 				alt="IJIM Logo" class="sidebar-logo">
-            <h2>IJIM</h2>
+            
         </div>
         <nav class="sidebar-menu">
             <ul>

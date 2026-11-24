@@ -509,7 +509,7 @@ section {
 					<h1 class="heading-responsive">
 
 						International Journal of Indian Medicine <span
-							class="impact-factor"> IIFS Impact Factor: 4.125 </span>
+							class="impact-factor"> IIFS Impact Factor: 6.0</span>
 
 					</h1>
 				</div>

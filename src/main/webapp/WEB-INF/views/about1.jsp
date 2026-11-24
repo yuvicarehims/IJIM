@@ -920,7 +920,7 @@ body {
 					<h1 class="heading-responsive">
 
 						International Journal of Indian Medicine <span
-							class="impact-factor"> IIFS Impact Factor: 4.125 </span>
+							class="impact-factor"> IIFS Impact Factor: 6.0</span>
 
 					</h1>
 				</div>
@@ -991,7 +991,7 @@ body {
 	<div id="complete_section">${pageContent}</div>
 	<!-- ===== Footer ===== -->
 	<footer class="bg-dark text-light pt-5 pb-3"
-		style="background: rgb(17, 23, 9) !important;">
+		style="background: #387559 !important;">
 		<div class="container">
 
 			<div class="row gy-4">

@@ -39,7 +39,7 @@
 
     /* Sidebar */
     .sidebar { width: 250px; background: var(--deep-green); color: var(--cream); height: 100vh; position: fixed; transition: all 0.3s; z-index: 1000; box-shadow: var(--shadow); }
-    .sidebar-header { padding: 1.5rem 1rem; border-bottom: 1px solid rgba(251,246,238,0.1); text-align:center; background: var(--primary-dark); }
+    .sidebar-header { padding: 1.5rem 1rem; border-bottom: 1px solid rgba(251,246,238,0.1); text-align:center; background:#387559; }
     .sidebar-header h2 { font-size:1.5rem; font-weight:600; color:var(--gold); }
     .sidebar-menu { padding:1rem 0; height: calc(100vh - 80px); overflow-y:auto; }
     .sidebar-menu ul { list-style:none; }
