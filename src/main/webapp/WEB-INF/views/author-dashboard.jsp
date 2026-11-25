@@ -1160,18 +1160,18 @@
                 </div>
 
                 <!-- Published -->
-                <div class="stat-card">
+<%--                 <div class="stat-card">
                     <div class="stat-number">
                         <c:set var="publishedCount" value="0" />
                         <c:if test="${not empty submissions}}">
                             <c:forEach var="submission" items="${submissions}">
-                                <%-- Safely get enum name into statusName string for comparisons --%>
+                                Safely get enum name into statusName string for comparisons
                                 <%
                                     com.ayurvedic.main.entity.Submission _s = (com.ayurvedic.main.entity.Submission) pageContext.getAttribute("submission");
                                     String statusName = (_s != null && _s.getStatus() != null) ? _s.getStatus().name() : "";
                                     pageContext.setAttribute("statusName", statusName);
                                 %>
-                                <c:if test="${statusName == 'UNDER_PUBLISHED'}">
+                                <c:if test="${statusName == 'PUBLISHED'}">
                                     <c:set var="publishedCount" value="${publishedCount + 1}" />
                                 </c:if>
                             </c:forEach>
@@ -1180,7 +1180,19 @@
                     </div>
                     <div class="stat-label">Published Articles</div>
                 </div>
+ --%>
+ 
+ <div class="stat-card">
 
+    <div class="stat-number">
+        ${publishedCount != null ? publishedCount : 0}
+    </div>
+
+    <div class="stat-label">
+        Published Articles
+    </div>
+
+</div>
                 <!-- Under Review -->
                 <div class="stat-card">
                     <div class="stat-number">
@@ -1410,7 +1422,7 @@
                         <c:when test="${statusName == 'UNDER_REVIEW'}">Under Review</c:when>
                         <c:when test="${statusName == 'UNDER_EDITING'}">Under Editing</c:when>
                         <c:when test="${statusName == 'UNDER_ACCEPTED'}">Under Accepted</c:when>
-                        <c:when test="${statusName == 'UNDER_PUBLISHED'}">Under Published</c:when>
+                        <c:when test="${statusName == 'UNDER_PUBLISHED'}">Published</c:when>
                         <c:when test="${statusName == 'UNDER_REJECTED'}">Under Rejected</c:when>
                         <c:otherwise>Under Review</c:otherwise>
                     </c:choose>

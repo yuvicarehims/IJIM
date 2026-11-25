@@ -187,16 +187,29 @@ public class AuthorController {
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String authorDashboard(Model model, Authentication authentication) {
+
         String email = authentication.getName();
+
         Optional<User> userOptional = userService.findByEmail(email);
-        
+
         if (userOptional.isPresent()) {
+
             User author = userOptional.get();
-            List<Submission> submissions = submissionService.getUserSubmissions(author);
+
+            List<Submission> submissions =
+                    submissionService.getUserSubmissions(author);
+
+            // Count only PUBLISHED articles
+            long publishedCount = submissions.stream()
+                    .filter(submission -> submission.getStatus() != null
+                            && submission.getStatus().name().equals("UNDER_PUBLISHED"))
+                    .count();
+
             model.addAttribute("submissions", submissions);
             model.addAttribute("user", author);
+            model.addAttribute("publishedCount", publishedCount);
         }
-        
+
         return "author-dashboard";
     }
 
