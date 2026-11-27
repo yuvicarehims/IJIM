@@ -38,7 +38,7 @@ public class ArchiveService {
 
         List<Submission> published = submissionRepository
 
-                .findByStatusOrderByUpdatedAtDesc(Submission.Status.PUBLISHED);
+                .findByStatusOrderByUpdatedAtDesc(Submission.Status.UNDER_PUBLISHED);
 
         Map<Integer, Map<String, Map<String, List<Submission>>>> archive = new TreeMap<>(Comparator.reverseOrder());
 

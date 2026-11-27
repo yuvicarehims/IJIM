@@ -1028,7 +1028,7 @@ body {
 		<div class="container-main">
 			<h1>Author Guidelines</h1>
 			<p>Comprehensive instructions for preparing and submitting your
-				research manuscripts to Nature Ayurved</p>
+				research manuscripts to IJIM</p>
 		</div>
 	</section>
 

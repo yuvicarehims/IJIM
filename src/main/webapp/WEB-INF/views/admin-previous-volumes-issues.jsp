@@ -77,7 +77,7 @@ body {
 /* ---------------- SIDEBAR ---------------- */
 .sidebar {
 	width: 250px;
-	background: var(--deep-green);
+	background: #387559;
 	color: var(--cream);
 	height: 100vh;
 	position: fixed;

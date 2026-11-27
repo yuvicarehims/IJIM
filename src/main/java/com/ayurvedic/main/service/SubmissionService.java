@@ -142,15 +142,21 @@ public class SubmissionService {
 
 		                return volumeMatch && issueMatch;
 		            })
-		            .sorted((s1, s2) -> {
-		                // Original sorting logic unchanged
-		                if (s1.getPublicationDate() == null
-		                        || s2.getPublicationDate() == null) {
-		                    return s2.getUpdatedAt().compareTo(s1.getUpdatedAt());
-		                }
-		                return s2.getPublicationDate()
-		                        .compareTo(s1.getPublicationDate());
-		            })
+		            .sorted(
+		            	    java.util.Comparator
+		            	        .comparing(
+		            	            Submission::getPublicationDate,
+		            	            java.util.Comparator.nullsLast(
+		            	                java.util.Comparator.naturalOrder()
+		            	            )
+		            	        )
+		            	        .thenComparing(
+		            	            Submission::getUpdatedAt,
+		            	            java.util.Comparator.nullsLast(
+		            	                java.util.Comparator.naturalOrder()
+		            	            )
+		            	        )
+		            	)
 		            .collect(Collectors.toList());
 
 		    // Data mil gaya toh return karo
